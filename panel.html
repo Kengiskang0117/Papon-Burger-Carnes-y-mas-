@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Panel de mesas · Papon Burger &amp; Grill</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fondo:#0F0F0F; --tarjeta:#1A1A1A; --tarjeta-2:#222; --borde:#2B2B2B;
+  --texto:#F5F1E8; --suave:#A8A29A; --acento:#E1262D; --acento-texto:#FF4D55; --sobre-acento:#fff;
+  --verde:#3DDC84; --amarillo:#F2C230; --rojo:#FF5A4E; --azul:#5AA9FF;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fondo);color:var(--texto);font-family:'DM Sans',system-ui,sans-serif;font-size:15px;line-height:1.4;-webkit-font-smoothing:antialiased}
+button{font:inherit;color:inherit;cursor:pointer}
+.display{font-family:'Bebas Neue',Impact,sans-serif;font-weight:400;letter-spacing:.03em;margin:0;line-height:1}
+:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+
+/* Encabezado */
+.top{position:sticky;top:0;z-index:20;background:rgba(15,15,15,.94);backdrop-filter:blur(10px);border-bottom:1px solid #1F1F1F}
+.top-in{max-width:1400px;margin:0 auto;padding:14px 20px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 18px}
+.marca{display:flex;align-items:center;gap:10px}
+.logo{width:40px;height:40px;border-radius:50%;background:var(--texto);color:var(--fondo);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:14px}
+.marca .display{font-size:26px}
+.marca small{display:block;font-size:12px;color:var(--suave);letter-spacing:.06em;text-transform:uppercase}
+.demo{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--sobre-acento);background:var(--acento);padding:4px 9px;border-radius:999px}
+.reloj{margin-left:auto;font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.04em}
+.ctrl{display:flex;gap:8px}
+.ctrl button{height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--borde);background:var(--tarjeta);font-size:13px;font-weight:700;display:flex;align-items:center;gap:8px}
+.ctrl button.on{border-color:var(--acento-texto);color:var(--acento-texto)}
+
+/* Resumen */
+.wrap{max-width:1400px;margin:0 auto;padding:0 20px 40px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.stat{padding:14px 16px;border-radius:16px;background:var(--tarjeta);border:1px solid var(--borde)}
+.stat b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:38px;line-height:1}
+.stat span{font-size:12px;color:var(--suave);text-transform:uppercase;letter-spacing:.08em}
+.stat.rojo b{color:var(--rojo)}
+.stat.amarillo b{color:var(--amarillo)}
+
+.filtros{display:flex;gap:8px;margin:18px 0 6px;overflow-x:auto;scrollbar-width:none}
+.filtros::-webkit-scrollbar{display:none}
+.filtro{flex:0 0 auto;height:40px;padding:0 16px;border-radius:999px;border:1px solid var(--borde);background:var(--tarjeta);font-size:14px;font-weight:700;color:#E6E0D6}
+.filtro.activo{background:var(--acento);border-color:var(--acento-texto);color:var(--sobre-acento);box-shadow:0 0 0 3px rgba(225,38,45,.2)}
+.filtro .n{opacity:.7;margin-left:4px}
+
+.leyenda{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--suave);margin:10px 0 14px}
+.leyenda i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+
+/* Mesas */
+.mesas{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px}
+.mesa{position:relative;text-align:left;padding:16px;border-radius:20px;background:var(--tarjeta);border:1px solid var(--borde);display:flex;flex-direction:column;gap:10px;min-height:210px;overflow:hidden;transition:transform .15s,border-color .2s}
+.mesa:hover{transform:translateY(-2px)}
+.mesa::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--color,transparent)}
+.mesa.libre{background:#141414;color:#6E6A63;min-height:120px;justify-content:center;align-items:center;text-align:center;border-style:dashed}
+.mesa.libre .num{color:#5A5650}
+.mesa.nueva{animation:parpadeo 1.2s ease-in-out infinite}
+@keyframes parpadeo{0%,100%{box-shadow:0 0 0 0 rgba(225,38,45,.0)}50%{box-shadow:0 0 0 4px rgba(225,38,45,.45)}}
+.mesa-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px}
+.num{font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:.9}
+.num small{display:block;font-family:'DM Sans',sans-serif;font-size:11px;letter-spacing:.1em;color:var(--suave);text-transform:uppercase}
+.tiempo{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;color:var(--color)}
+.tiempo small{display:block;font-family:'DM Sans',sans-serif;font-size:11px;color:var(--suave);text-align:right}
+.chip{align-self:flex-start;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:5px 10px;border-radius:999px;border:1px solid}
+.chip.nuevo{color:var(--acento-texto);border-color:#5E1A1E;background:#2A0E10}
+.chip.cocina{color:var(--azul);border-color:#1F3A5A;background:#101C2A}
+.chip.listo{color:var(--verde);border-color:#1E4A33;background:#0F2419}
+.chip.servido{color:#C9C3B8;border-color:#3A3A3A;background:#1E1E1E}
+.items{margin:0;padding:0;list-style:none;font-size:14px;color:#D8D2C8;display:flex;flex-direction:column;gap:3px}
+.items .mas{color:var(--suave);font-size:13px}
+.mesa-pie{margin-top:auto;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.total{font-weight:700;color:var(--acento-texto)}
+.accion{height:40px;padding:0 14px;border-radius:999px;border:none;background:var(--acento);color:var(--sobre-acento);font-weight:700;font-size:13px;white-space:nowrap}
+.accion.sec{background:transparent;border:1px solid var(--borde);color:var(--texto)}
+
+/* Detalle */
+.fondo{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity .2s}
+.fondo.abierto{opacity:1;pointer-events:auto}
+.detalle{position:fixed;z-index:50;top:0;right:0;bottom:0;width:min(440px,100%);background:#141414;border-left:1px solid var(--borde);transform:translateX(105%);transition:transform .28s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column}
+.detalle.abierto{transform:translateX(0)}
+.det-cab{padding:20px;display:flex;align-items:flex-start;justify-content:space-between;border-bottom:1px solid var(--borde)}
+.det-cab .num{font-size:52px}
+.cerrar{width:44px;height:44px;border-radius:50%;border:1px solid var(--borde);background:var(--tarjeta);display:flex;align-items:center;justify-content:center}
+.det-cuerpo{padding:20px;overflow-y:auto;flex:1;display:flex;flex-direction:column;gap:14px}
+.linea{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid #222}
+.linea .nota{display:block;font-size:13px;color:var(--acento-texto);margin-top:2px}
+.dato{display:flex;justify-content:space-between;font-size:14px;color:#C9C3B8}
+.pasos{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.paso{text-align:center;font-size:11px;font-weight:700;color:#6E6A63;padding-top:10px;border-top:3px solid #2B2B2B}
+.paso.hecho{color:var(--texto);border-color:var(--acento-texto)}
+.det-pie{padding:16px 20px;border-top:1px solid var(--borde);display:flex;flex-direction:column;gap:10px}
+.det-pie .accion{height:52px;font-size:15px}
+
+.aviso{position:fixed;left:50%;top:84px;z-index:60;transform:translate(-50%,-20px);opacity:0;pointer-events:none;background:var(--acento);color:var(--sobre-acento);font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:all .25s}
+.aviso.ver{opacity:1;transform:translate(-50%,0)}
+
+@media (max-width:640px){
+  .reloj{display:none}
+  .ctrl{width:100%}
+  .ctrl button{flex:1;justify-content:center}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .mesas{grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:10px}
+  .mesa{padding:14px;min-height:190px}
+  .num{font-size:34px}
+  .tiempo{font-size:24px}
+  .items li:nth-child(n+3):not(.mas){display:none}
+  .mesa-pie{flex-direction:column;align-items:stretch}
+  .detalle{top:auto;left:0;width:100%;max-height:90vh;border-left:none;border-top:1px solid var(--borde);border-radius:24px 24px 0 0;transform:translateY(105%)}
+  .detalle.abierto{transform:translateY(0)}
+}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-in">
+    <div class="marca">
+      <div class="logo">PB</div>
+      <div><div class="display">PAPON <span style="color:var(--acento-texto)">BURGER</span></div><small>Panel de mesas</small></div>
+    </div>
+    <span class="demo">DEMO</span>
+    <div class="reloj" id="reloj">--:--</div>
+    <div class="ctrl">
+      <button id="btn-sonido" aria-pressed="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/></svg>
+        <span>Activar sonido</span>
+      </button>
+      <button id="btn-simular" class="on" aria-pressed="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3v18l15-9z"/></svg>
+        <span>Simular pedidos</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="stats" aria-label="Resumen">
+    <div class="stat"><b id="s-ocupadas">0</b><span>Mesas ocupadas</span></div>
+    <div class="stat amarillo"><b id="s-nuevos">0</b><span>Pedidos nuevos</span></div>
+    <div class="stat rojo"><b id="s-espera">0</b><span>Esperando +20 min</span></div>
+    <div class="stat"><b id="s-ventas">RD$ 0</b><span>Ventas de hoy</span></div>
+  </section>
+
+  <nav class="filtros" id="filtros" aria-label="Filtrar mesas"></nav>
+  <div class="leyenda">
+    <span><i style="background:var(--verde)"></i>Menos de 10 min</span>
+    <span><i style="background:var(--amarillo)"></i>10 a 20 min</span>
+    <span><i style="background:var(--rojo)"></i>Más de 20 min · mesa impaciente</span>
+  </div>
+
+  <section class="mesas" id="mesas" aria-live="polite"></section>
+</main>
+
+<div class="fondo" id="fondo"></div>
+<aside class="detalle" id="detalle" role="dialog" aria-modal="true" aria-label="Detalle de la mesa"></aside>
+<div class="aviso" id="aviso" role="status"></div>
+
+<script>
+/* =========================================================
+   PANEL DE MESAS · DEMO
+   - Muestra pedidos de ejemplo y simula pedidos nuevos.
+   - También recibe los pedidos que se hacen desde el menú
+     (index.html?mesa=5 → "Enviar pedido a la cocina") en este
+     mismo navegador. En la versión real, los pedidos vendrían de
+     una base de datos en internet para todos los celulares.
+   ========================================================= */
+const NEGOCIO = { nombre: "Papon Burger & Grill", moneda: "RD$", mesas: 12 };
+const CLAVE = "panel-" + NEGOCIO.nombre;
+
+const ESTADOS = ["nuevo", "cocina", "listo", "servido"];
+const NOMBRE_ESTADO = { nuevo:"Nuevo", cocina:"En cocina", listo:"Listo para servir", servido:"Servido" };
+const SIGUIENTE = { nuevo:"Pasar a cocina", cocina:"Marcar listo", listo:"Marcar servido", servido:"Cobrar y liberar" };
+
+const PLATOS = [
+  ["La Papon",545],["Doble Magra",695],["La Fit",525],["La Brasa",595],["La Criolla",575],["Smoky BBQ",625],
+  ["Churrasco Papon 8 oz",1150],["Pinchos Mixtos",595],["Crispy Chicken",525],["Papas Papon",295],["Aros de cebolla",225],
+  ["Presidente",200],["Coca-Cola",90],["Morir Soñando",175],["Limonada",150]
+];
+const NOMBRES = ["Carlos","María","José","Ana","Luis","Rosa","Pedro","Yokasta","Miguel","Laura","Rafael","Paola"];
+const NOTAS = ["Sin cebolla","Término medio","Bien cocida","Salsa aparte","Sin hielo",""];
+
+const $ = s => document.querySelector(s);
+const dinero = n => NEGOCIO.moneda + " " + Number(n).toLocaleString("en-US");
+const esc = t => String(t ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const azar = a => a[Math.floor(Math.random() * a.length)];
+
+let pedidos = [];          // pedidos activos
+let ventas = 0;
+let filtro = "todas";
+let abierta = null;        // mesa abierta en el detalle
+
+function pedidoAzar(mesa, minutosAtras, estado){
+  const n = 1 + Math.floor(Math.random() * 4), items = [];
+  for (let i = 0; i < n; i++){
+    const [nombre, precio] = azar(PLATOS);
+    const ya = items.find(x => x.nombre === nombre);
+    if (ya) ya.cant++; else items.push({ nombre, precio, cant: 1, nota: Math.random() < .3 ? azar(NOTAS) : "" });
+  }
+  return { id: Math.random().toString(36).slice(2), mesa: String(mesa), nombre: azar(NOMBRES), pago: azar(["Efectivo","Tarjeta"]), notas: "",
+           items, total: items.reduce((a, x) => a + x.cant * x.precio, 0), creado: Date.now() - minutosAtras * 60000, estado, origen: "demo" };
+}
+
+/* Pedidos de ejemplo para que el panel no arranque vacío */
+function sembrar(){
+  pedidos = [
+    pedidoAzar(1, 24, "cocina"), pedidoAzar(2, 3, "nuevo"), pedidoAzar(4, 14, "cocina"),
+    pedidoAzar(5, 8, "listo"), pedidoAzar(7, 31, "servido"), pedidoAzar(9, 1, "nuevo"), pedidoAzar(10, 18, "cocina")
+  ];
+  ventas = 18640;
+}
+
+/* Pedidos que llegan desde el menú (mismo navegador) */
+function leerDelMenu(){
+  let lista = [];
+  try { lista = JSON.parse(localStorage.getItem(CLAVE) || "[]"); } catch(e) {}
+  if (!lista.length) return;
+  try { localStorage.setItem(CLAVE, "[]"); } catch(e) {}
+  lista.forEach(p => {
+    p.origen = "menu";
+    const ya = pedidos.find(x => x.mesa === p.mesa);
+    if (ya && ya.origen === "demo") pedidos = pedidos.filter(x => x !== ya);   // un pedido de ejemplo se reemplaza
+    else if (ya) {                  // la mesa ya tenía pedido real: se suman los productos nuevos
+      ya.items = ya.items.concat(p.items); ya.total += p.total;
+      ya.estado = "nuevo"; ya.creado = p.creado;
+    }
+    if (!ya || ya.origen === "demo") pedidos.push(p);
+    nuevoPedido(p);
+  });
+  pintar();
+}
+
+function minutos(p){ return Math.floor((Date.now() - p.creado) / 60000); }
+function reloj(p){ const s = Math.floor((Date.now() - p.creado) / 1000); return String(Math.floor(s / 60)).padStart(2, "0") + ":" + String(s % 60).padStart(2, "0"); }
+function color(p){
+  if (p.estado === "servido") return "#555";
+  const m = minutos(p);
+  return m >= 20 ? "var(--rojo)" : m >= 10 ? "var(--amarillo)" : "var(--verde)";
+}
+
+function cumpleFiltro(p){
+  if (filtro === "todas") return true;
+  if (filtro === "impacientes") return p && p.estado !== "servido" && minutos(p) >= 20;
+  return p && p.estado === filtro;
+}
+
+function pintar(){
+  const porMesa = {};
+  pedidos.forEach(p => porMesa[p.mesa] = p);
+  const extras = Object.keys(porMesa).filter(m => isNaN(m) || +m > NEGOCIO.mesas);
+  const numeros = [...Array(NEGOCIO.mesas)].map((_, i) => String(i + 1)).concat(extras);
+
+  // Filtros con contadores
+  const cuenta = k => pedidos.filter(p => k === "impacientes" ? p.estado !== "servido" && minutos(p) >= 20 : p.estado === k).length;
+  const F = [["todas","Todas",numeros.length],["nuevo","Nuevos",cuenta("nuevo")],["cocina","En cocina",cuenta("cocina")],["listo","Listos",cuenta("listo")],["servido","Servidos",cuenta("servido")],["impacientes","Impacientes",cuenta("impacientes")]];
+  $("#filtros").innerHTML = F.map(([k, t, n]) => `<button class="filtro${filtro === k ? " activo" : ""}" data-f="${k}">${t}<span class="n">${n}</span></button>`).join("");
+
+  $("#mesas").innerHTML = numeros.map(m => {
+    const p = porMesa[m];
+    if (!cumpleFiltro(p)) return "";
+    if (!p) return `<div class="mesa libre"><div class="num">${esc(m)}<small>Libre</small></div></div>`;
+    const vis = p.items.slice(0, 3).map(i => `<li>${i.cant} × ${esc(i.nombre)}</li>`).join("");
+    const mas = p.items.length > 3 ? `<li class="mas">+${p.items.length - 3} más…</li>` : "";
+    return `<button class="mesa${p.estado === "nuevo" ? " nueva" : ""}" data-mesa="${esc(m)}" style="--color:${color(p)}" aria-label="Mesa ${esc(m)}, ${NOMBRE_ESTADO[p.estado]}">
+      <div class="mesa-top">
+        <div class="num"><small>Mesa</small>${esc(m)}</div>
+        <div class="tiempo" data-t="${p.id}">${reloj(p)}<small>esperando</small></div>
+      </div>
+      <span class="chip ${p.estado}">${NOMBRE_ESTADO[p.estado]}${p.origen === "menu" ? " · desde el menú" : ""}</span>
+      <ul class="items">${vis}${mas}</ul>
+      <div class="mesa-pie"><span class="total">${dinero(p.total)}</span><span class="accion" data-avanzar="${p.id}">${SIGUIENTE[p.estado]}</span></div>
+    </button>`;
+  }).join("") || `<p style="color:var(--suave);grid-column:1/-1;text-align:center;padding:30px 0">No hay mesas en este filtro.</p>`;
+
+  $("#s-ocupadas").textContent = pedidos.length + "/" + NEGOCIO.mesas;
+  $("#s-nuevos").textContent = cuenta("nuevo");
+  $("#s-espera").textContent = cuenta("impacientes");
+  $("#s-ventas").textContent = dinero(ventas);
+  if (abierta) pintarDetalle();
+}
+
+function avanzar(id){
+  const p = pedidos.find(x => x.id === id); if (!p) return;
+  if (p.estado === "servido") {
+    ventas += p.total;
+    pedidos = pedidos.filter(x => x !== p);
+    avisar(`Mesa ${p.mesa} cobrada y liberada`);
+    if (abierta === p.mesa) cerrar();
+  } else {
+    p.estado = ESTADOS[ESTADOS.indexOf(p.estado) + 1];
+    avisar(`Mesa ${p.mesa}: ${NOMBRE_ESTADO[p.estado]}`);
+  }
+  pintar();
+}
+
+/* Detalle de una mesa */
+function pintarDetalle(){
+  const p = pedidos.find(x => x.mesa === abierta);
+  if (!p) return cerrar();
+  const paso = ESTADOS.indexOf(p.estado);
+  $("#detalle").innerHTML = `
+    <div class="det-cab">
+      <div><div class="num"><small>Mesa</small>${esc(p.mesa)}</div><span class="chip ${p.estado}" style="margin-top:10px;display:inline-block">${NOMBRE_ESTADO[p.estado]}</span></div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:10px">
+        <button class="cerrar" id="det-cerrar" aria-label="Cerrar"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button>
+        <div class="tiempo" data-t="${p.id}" style="--color:${color(p)}">${reloj(p)}<small>esperando</small></div>
+      </div>
+    </div>
+    <div class="det-cuerpo">
+      <div class="pasos">${ESTADOS.map((e, i) => `<div class="paso${i <= paso ? " hecho" : ""}">${NOMBRE_ESTADO[e].replace(" para servir","")}</div>`).join("")}</div>
+      <div>${p.items.map(i => `<div class="linea"><span><b>${i.cant} ×</b> ${esc(i.nombre)}${i.nota ? `<span class="nota">Nota: ${esc(i.nota)}</span>` : ""}</span><span>${dinero(i.cant * i.precio)}</span></div>`).join("")}</div>
+      <div class="dato"><span>Cliente</span><span>${esc(p.nombre)}</span></div>
+      <div class="dato"><span>Pago</span><span>${esc(p.pago)}</span></div>
+      ${p.notas ? `<div class="dato"><span>Notas</span><span>${esc(p.notas)}</span></div>` : ""}
+      <div class="dato"><span>Hora del pedido</span><span>${new Date(p.creado).toLocaleTimeString("es-DO", { hour:"2-digit", minute:"2-digit" })}</span></div>
+      <div class="dato" style="font-size:18px;font-weight:700;color:var(--texto)"><span>Total</span><span style="color:var(--acento-texto)">${dinero(p.total)}</span></div>
+    </div>
+    <div class="det-pie">
+      <button class="accion" data-avanzar="${p.id}">${SIGUIENTE[p.estado]}</button>
+    </div>`;
+}
+function abrir(m){ abierta = m; pintarDetalle(); $("#detalle").classList.add("abierto"); $("#fondo").classList.add("abierto"); }
+function cerrar(){ abierta = null; $("#detalle").classList.remove("abierto"); $("#fondo").classList.remove("abierto"); }
+
+/* Clics */
+document.addEventListener("click", e => {
+  const av = e.target.closest("[data-avanzar]");
+  if (av) { e.stopPropagation(); return avanzar(av.dataset.avanzar); }
+  const f = e.target.closest("[data-f]"); if (f) { filtro = f.dataset.f; return pintar(); }
+  const m = e.target.closest(".mesa[data-mesa]"); if (m) return abrir(m.dataset.mesa);
+  if (e.target.closest("#det-cerrar") || e.target.id === "fondo") cerrar();
+});
+document.addEventListener("keydown", e => { if (e.key === "Escape") cerrar(); });
+
+/* Sonido (los navegadores solo dejan sonar después de un clic) */
+let sonido = false, audio;
+$("#btn-sonido").addEventListener("click", () => {
+  sonido = !sonido;
+  $("#btn-sonido").classList.toggle("on", sonido);
+  $("#btn-sonido").setAttribute("aria-pressed", sonido);
+  $("#btn-sonido span").textContent = sonido ? "Sonido activado" : "Activar sonido";
+  if (sonido) { audio = audio || new (window.AudioContext || window.webkitAudioContext)(); campana(); }
+});
+function campana(){
+  if (!sonido || !audio) return;
+  [880, 1320].forEach((f, i) => {
+    const o = audio.createOscillator(), g = audio.createGain();
+    o.frequency.value = f; o.type = "sine";
+    g.gain.setValueAtTime(0.0001, audio.currentTime + i * .18);
+    g.gain.exponentialRampToValueAtTime(0.25, audio.currentTime + i * .18 + .02);
+    g.gain.exponentialRampToValueAtTime(0.0001, audio.currentTime + i * .18 + .5);
+    o.connect(g).connect(audio.destination); o.start(audio.currentTime + i * .18); o.stop(audio.currentTime + i * .18 + .55);
+  });
+}
+
+/* Pedido nuevo: aviso + sonido */
+function nuevoPedido(p){ campana(); avisar(`¡Nuevo pedido! Mesa ${p.mesa} · ${dinero(p.total)}`); }
+
+/* Simulación: llega un pedido nuevo cada 25 segundos a una mesa libre */
+let simular = true;
+$("#btn-simular").addEventListener("click", () => {
+  simular = !simular;
+  $("#btn-simular").classList.toggle("on", simular);
+  $("#btn-simular").setAttribute("aria-pressed", simular);
+  $("#btn-simular span").textContent = simular ? "Simular pedidos" : "Simulación pausada";
+});
+setInterval(() => {
+  if (!simular) return;
+  const ocupadas = new Set(pedidos.map(p => p.mesa));
+  const libres = [...Array(NEGOCIO.mesas)].map((_, i) => String(i + 1)).filter(m => !ocupadas.has(m));
+  if (!libres.length) return;
+  const p = pedidoAzar(azar(libres), 0, "nuevo");
+  pedidos.push(p); nuevoPedido(p); pintar();
+}, 25000);
+
+/* Aviso */
+let tAviso;
+function avisar(t){ const a = $("#aviso"); a.textContent = t; a.classList.add("ver"); clearTimeout(tAviso); tAviso = setTimeout(() => a.classList.remove("ver"), 2400); }
+
+/* Relojes: se actualizan cada segundo sin volver a dibujar todo */
+setInterval(() => {
+  $("#reloj").textContent = new Date().toLocaleTimeString("es-DO", { hour:"2-digit", minute:"2-digit" });
+  document.querySelectorAll("[data-t]").forEach(el => {
+    const p = pedidos.find(x => x.id === el.dataset.t); if (!p) return;
+    el.firstChild.nodeValue = reloj(p);
+    const c = color(p); const card = el.closest(".mesa"); if (card) card.style.setProperty("--color", c); else el.style.setProperty("--color", c);
+  });
+}, 1000);
+setInterval(pintar, 30000);                 // refresca colores y contadores
+window.addEventListener("storage", e => { if (e.key === CLAVE) leerDelMenu(); });
+setInterval(leerDelMenu, 2000);
+
+sembrar(); pintar(); leerDelMenu();
+$("#reloj").textContent = new Date().toLocaleTimeString("es-DO", { hour:"2-digit", minute:"2-digit" });
+</script>
+</body>
+</html>
