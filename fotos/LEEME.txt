@@ -1,0 +1,120 @@
+FOTOS DE PAPON BURGER & GRILL
+==================================
+
+YA CONECTADAS: 28 fotos gratis de Unsplash (se cargan desde internet).
+SIN FOTO (muestran ilustración): Tostones, Coca-Cola, Sprite, Agua, Presidente, Corona.
+Si quieres reemplazar alguna con tu propia foto, usa los textos de abajo.
+
+1. Genera cada foto con una IA de imágenes (Microsoft Designer / Bing Image Creator son gratis, o Canva).
+2. Usa formato CUADRADO (1:1). Para 'grill-master' usa HORIZONTAL (16:9), porque es la foto grande de arriba.
+3. Guarda cada foto con el NOMBRE DE ARCHIVO indicado y súbela a esta carpeta 'fotos'.
+4. En index.html busca el id del producto y escribe la ruta en img, por ejemplo:  img:"fotos/la-papon.jpg"
+
+Estilo para TODAS (pégalo al final de cada texto):
+  fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+------------------------------------------------------------
+
+Archivo: la-papon.jpg   (La Papon)
+Texto:   hamburguesa con carne de res, queso cheddar derretido, tocineta crujiente y cebolla caramelizada en pan brioche, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: doble-magra.jpg   (Doble Magra)
+Texto:   hamburguesa doble con dos carnes, doble queso cheddar y pepinillos, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: la-fit.jpg   (La Fit)
+Texto:   hamburguesa saludable en pan integral con lechuga, tomate, aguacate y queso blanco a la plancha, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: la-brasa.jpg   (La Brasa)
+Texto:   hamburguesa picante con queso pepper jack y jalapeños asados, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: la-criolla.jpg   (La Criolla)
+Texto:   hamburguesa con queso frito, huevo frito y repollo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: smoky-bbq.jpg   (Smoky BBQ)
+Texto:   hamburguesa con aros de cebolla, tocineta y salsa BBQ, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: mushroom-swiss.jpg   (Mushroom Swiss)
+Texto:   hamburguesa con hongos salteados y queso suizo derretido, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: grill-master.jpg   (La Grill Master)
+Texto:   hamburguesa gourmet alta con carne gruesa, queso provolone y cebolla al vino tinto en pan brioche, humo de parrilla, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: papon-junior.jpg   (Papon Junior)
+Texto:   hamburguesa pequeña con queso y papitas fritas, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: churrasco.jpg   (Churrasco Papon 8 oz)
+Texto:   churrasco a la parrilla cortado con chimichurri, papas rústicas y ensalada, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: pechuga-brasa.jpg   (Pechuga a la Brasa)
+Texto:   pechuga de pollo a la parrilla con vegetales asados y arroz blanco, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: costillas.jpg   (Costillas BBQ)
+Texto:   costillas de cerdo glaseadas en salsa BBQ con papas fritas, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: pinchos.jpg   (Pinchos Mixtos)
+Texto:   tres pinchos de res y pollo a la parrilla con pimientos y cebolla, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: crispy-chicken.jpg   (Crispy Chicken)
+Texto:   sándwich de pollo crujiente con lechuga y pepinillos en pan brioche, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: chicken-grill.jpg   (Chicken Grill)
+Texto:   sándwich de pollo a la parrilla con mozzarella, tomate y pesto, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: philly-papon.jpg   (Philly Papon)
+Texto:   sándwich philly cheesesteak con bistec, pimientos, cebolla y queso derretido, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: wrap-pollo.jpg   (Wrap de Pollo)
+Texto:   wrap de tortilla con pollo a la parrilla, lechuga y tomate, cortado a la mitad, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: alitas.jpg   (Alitas BBQ (8))
+Texto:   alitas de pollo bañadas en salsa BBQ con aderezo blue cheese, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: papas-papon.jpg   (Papas Papon)
+Texto:   papas fritas con queso cheddar derretido, tocineta y cebollín, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: papas-rusticas.jpg   (Papas Rústicas)
+Texto:   papas rústicas con cáscara, ajo y romero, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: aros-cebolla.jpg   (Aros de Cebolla)
+Texto:   aros de cebolla empanizados y crujientes, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: yuca-frita.jpg   (Yuca Frita)
+Texto:   yuca frita dorada con salsa de ajo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: tostones.jpg   (Tostones)
+Texto:   tostones de plátano verde crujientes con salsa rosada, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: chinola.jpg   (Jugo de Chinola)
+Texto:   vaso de jugo de chinola (maracuyá) con hielo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: limonada.jpg   (Limonada)
+Texto:   vaso de limonada con hielo y rodaja de limón, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: morir-sonando.jpg   (Morir Soñando)
+Texto:   vaso de morir soñando, bebida dominicana de jugo de naranja con leche, con hielo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: coca-cola.jpg   (Coca-Cola)
+Texto:   vaso de refresco de cola con hielo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: sprite.jpg   (Sprite)
+Texto:   vaso de refresco de lima limón con hielo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: agua.jpg   (Agua)
+Texto:   vaso de agua con hielo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: presidente.jpg   (Presidente)
+Texto:   botella de cerveza fría verde con gotas de agua, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: corona.jpg   (Corona)
+Texto:   botella de cerveza clara con limón, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: brownie.jpg   (Brownie con Helado)
+Texto:   brownie de chocolate caliente con bola de helado de vainilla, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: cheesecake.jpg   (Cheesecake de Chinola)
+Texto:   rebanada de cheesecake con salsa de maracuyá, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+Archivo: flan-coco.jpg   (Flan de Coco)
+Texto:   flan de coco con caramelo, fotografía profesional de comida, fondo oscuro negro, luz dramática con reflejo rojo, primer plano, muy apetitoso, alta calidad, sin texto
+
+LOGO: guarda el logo como logo.png y en NEGOCIO escribe  logo: "fotos/logo.png"
