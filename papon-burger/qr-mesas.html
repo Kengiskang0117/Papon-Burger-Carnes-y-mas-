@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Códigos QR de las mesas · Papon Burger &amp; Grill</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#EDEAE3;color:#111;font-family:'DM Sans',system-ui,sans-serif}
+.barra{max-width:1000px;margin:0 auto;padding:24px 20px 8px;display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;justify-content:space-between}
+h1{font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:40px;margin:0;letter-spacing:.03em}
+.barra p{margin:4px 0 0;color:#555;font-size:14px;max-width:560px}
+.ctrl{display:flex;gap:8px;align-items:center}
+.ctrl label{font-size:14px;font-weight:700}
+.ctrl input{width:70px;height:42px;border-radius:10px;border:1px solid #bbb;padding:0 10px;font-size:15px}
+.ctrl button{height:42px;padding:0 18px;border-radius:999px;border:none;background:#E1262D;color:#fff;font-weight:700;font-size:14px;cursor:pointer}
+.base{max-width:1000px;margin:0 auto;padding:0 20px;font-size:12px;color:#666;word-break:break-all}
+.hojas{max-width:1000px;margin:16px auto 40px;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.tarjeta{background:#0F0F0F;color:#F5F1E8;border-radius:20px;padding:20px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px;break-inside:avoid}
+.tarjeta .marca{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em}
+.tarjeta .marca span{color:#FF4D55}
+.qr{background:#fff;padding:10px;border-radius:14px;line-height:0}
+.qr svg{width:150px;height:150px}
+.mesa{font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#FF4D55}
+.txt{font-size:13px;color:#C9C3B8}
+.error{max-width:1000px;margin:20px auto;padding:16px 20px;background:#fff3cd;border-radius:12px}
+@media print{
+  .barra .ctrl,.base{display:none}
+  body{background:#fff}
+  .hojas{grid-template-columns:repeat(3,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="barra">
+  <div>
+    <h1>Códigos QR de las mesas</h1>
+    <p>Cada código abre el menú ya sabiendo el número de la mesa. Imprímelos y ponlos en cada mesa. Funcionan cuando la página ya está publicada en internet (GitHub Pages o Netlify).</p>
+  </div>
+  <div class="ctrl">
+    <label for="cant">Mesas</label>
+    <input id="cant" type="number" min="1" max="60" value="12">
+    <button id="imprimir">Imprimir</button>
+  </div>
+</div>
+<div class="base" id="base"></div>
+<div class="hojas" id="hojas"></div>
+
+<script>
+// El menú está en la misma carpeta que esta página
+const base = location.href.replace(/[^/]*([?#].*)?$/, "") + "index.html";
+document.getElementById("base").textContent = "Enlace del menú: " + base + "?mesa=…";
+
+function pintar(){
+  const n = Math.max(1, Math.min(60, +document.getElementById("cant").value || 12));
+  if (typeof qrcode === "undefined") {
+    document.getElementById("hojas").innerHTML = '<div class="error" style="grid-column:1/-1">No se pudo cargar el generador de QR. Revisa que tengas internet y recarga la página.</div>';
+    return;
+  }
+  let html = "";
+  for (let i = 1; i <= n; i++){
+    const qr = qrcode(0, "M"); qr.addData(base + "?mesa=" + i); qr.make();
+    html += `<div class="tarjeta">
+      <img src="fotos/logo.png" alt="" style="width:110px;height:110px;border-radius:50%">
+      <div class="marca">PAPON <span>BURGER</span></div>
+      <div class="qr">${qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true })}</div>
+      <div class="mesa">MESA ${i}</div>
+      <div class="txt">Escanea, pide y te lo llevamos a tu mesa</div>
+    </div>`;
+  }
+  document.getElementById("hojas").innerHTML = html;
+}
+document.getElementById("cant").addEventListener("input", pintar);
+document.getElementById("imprimir").addEventListener("click", () => window.print());
+pintar();
+</script>
+</body>
+</html>
