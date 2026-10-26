@@ -1,8 +1,8 @@
 FOTOS DE PAPON BURGER & GRILL
 ==================================
 
-YA CONECTADAS: 28 fotos gratis de Unsplash (se cargan desde internet).
-SIN FOTO (muestran ilustración): Tostones, Coca-Cola, Sprite, Agua, Presidente, Corona.
+YA CONECTADAS: las 34 fotos son gratis de Unsplash (se cargan desde internet).
+LOGO: fotos/logo.png (para la página) y fotos/logo-grande-1024.png (para redes sociales e impresión).
 Si quieres reemplazar alguna con tu propia foto, usa los textos de abajo.
 
 1. Genera cada foto con una IA de imágenes (Microsoft Designer / Bing Image Creator son gratis, o Canva).

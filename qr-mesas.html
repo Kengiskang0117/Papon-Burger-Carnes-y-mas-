@@ -63,6 +63,7 @@ function pintar(){
   for (let i = 1; i <= n; i++){
     const qr = qrcode(0, "M"); qr.addData(base + "?mesa=" + i); qr.make();
     html += `<div class="tarjeta">
+      <img src="fotos/logo.png" alt="" style="width:110px;height:110px;border-radius:50%">
       <div class="marca">PAPON <span>BURGER</span></div>
       <div class="qr">${qr.createSvgTag({ cellSize: 4, margin: 0, scalable: true })}</div>
       <div class="mesa">MESA ${i}</div>
