@@ -347,7 +347,7 @@ img{display:block;max-width:100%}
    ========================================================= */
 const NEGOCIO = {
   nombre: "Papon Burger & Grill",
-  whatsapp: "1978564534",           // Pon TU número para que los pedidos de prueba te lleguen a ti (1 + 809 + número)
+  whatsapp: "18090000000",           // Pon TU número para que los pedidos de prueba te lleguen a ti (1 + 809 + número)
   sucursal: "Santo Domingo, República Dominicana",
   moneda: "RD$",
   logo: "fotos/logo.png",             // Logo del negocio (vacío = se muestran las iniciales)
@@ -681,13 +681,16 @@ function enviarPedido(raiz){
   if (d.comprobante) msg += `\nNecesito comprobante fiscal`;
   if (d.notas.trim()) msg += `\nNotas: ${d.notas}`;
   const numero = String(NEGOCIO.whatsapp).replace(/\D/g, "");          // deja solo los números
-  const enlace = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(msg)}`;
+  const texto = encodeURIComponent(msg);
   const esCelular = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
   if (esCelular) {
-    window.location.href = enlace;                                       // celular: abre la app de WhatsApp en la misma pestaña
+    // Celular: abre la app de WhatsApp en la misma pestaña
+    window.location.href = `https://api.whatsapp.com/send?phone=${numero}&text=${texto}`;
   } else {
-    const ventana = window.open(enlace, "_blank");                       // computadora: abre WhatsApp en otra pestaña
-    if (!ventana) window.location.href = enlace;                         // si el navegador la bloquea, la abre aquí mismo
+    // Computadora: abre WhatsApp Web en otra pestaña (hay que tener la sesión de WhatsApp Web iniciada)
+    const enlace = `https://web.whatsapp.com/send?phone=${numero}&text=${texto}`;
+    const ventana = window.open(enlace, "_blank");
+    if (!ventana) window.location.href = enlace;                         // si el navegador bloquea la pestaña, la abre aquí mismo
   }
 }
 
