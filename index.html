@@ -1,16 +1,57 @@
 <!doctype html>
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+  ÍNDICE — Para cambiar algo, copia el código (con @@) y búscalo
+  con Ctrl+F (en la PC) o "Buscar en la página" (en el editor).
+╚══════════════════════════════════════════════════════════════════╝
+
+  DATOS DEL NEGOCIO (lo que más se cambia)
+  @@NEGOCIO        Nombre, moneda, logo: todos los datos juntos
+  @@WHATSAPP       Número donde llegan los pedidos
+  @@TELEFONO       Teléfono que se ve en la página
+  @@DIRECCION      Dirección (se cambia en un solo lugar)
+  @@MAPA           Enlace exacto para el botón "Cómo llegar"
+  @@HORARIO        Hora de abrir y cerrar (Abierto/Cerrado)
+  @@DELIVERY       Encender o apagar la opción Delivery
+  @@REDES          Instagram, Facebook, TikTok
+  @@REBAJA-TODO    Rebaja en % para todo el menú
+
+  PRODUCTOS
+  @@DESTACADO      Producto grande de arriba
+  @@REBAJAS        Cómo poner rebaja a un producto
+  @@MENU           Inicio de la lista de productos
+  @@OFERTAS  @@HAMBURGUESAS  @@PARRILLA  @@POLLO
+  @@ACOMPANANTES  @@BEBIDAS  @@POSTRES
+
+  APARIENCIA
+  @@COLORES        Colores de la página
+  @@TITULO         Nombre que sale en la pestaña del navegador
+  @@NOMBRE-ARRIBA  Nombre grande del encabezado (PAPON BURGER)
+  @@VISTA-PC       Cómo se ve en computadora
+
+  TEXTOS DE LA PÁGINA
+  @@CARGA          Pantalla de carga ("Cargando menú")
+  @@LOBBY          Bienvenida: Para llevar / Delivery / Comer aquí
+  @@TEXTOS-MODO    Texto de la barra según la opción elegida
+  @@INFO           Tarjetas de horario, dirección y teléfono
+  @@PASOS          "Cómo pedir" (1, 2, 3)
+  @@PIE            Pie de página y firma
+  @@FORMULARIO     Campos que llena el cliente al pedir
+  @@MENSAJE        Mensaje que llega por WhatsApp
+-->
 <html lang="es">
 <head>
 <meta charset="utf-8">
 <!-- Esta línea es la que hace que la página se adapte al tamaño del celular -->
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- @@TITULO -->
 <title>Papon Burger &amp; Grill · Menú</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&display=swap" rel="stylesheet">
 <style>
 /* =========================================================
-   COLORES Y MEDIDAS (cámbialos aquí para otro cliente)
+   @@COLORES — COLORES Y MEDIDAS (cámbialos aquí para otro cliente)
    ========================================================= */
 :root{
   --fondo:#0F0F0F;
@@ -245,7 +286,7 @@ img{display:block;max-width:100%}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
 
 /* =========================================================
-   VISTA DE COMPUTADORA (pantallas de 900px o más)
+   @@VISTA-PC — VISTA DE COMPUTADORA (pantallas de 900px o más)
    Esto es lo que hace que cambie entre celular y PC
    ========================================================= */
 @media (min-width:900px){
@@ -294,13 +335,13 @@ img{display:block;max-width:100%}
 </head>
 <body>
 
-<!-- ================= PANTALLA DE CARGA (logo) ================= -->
+<!-- ================= @@CARGA — PANTALLA DE CARGA (logo) ================= -->
 <div class="splash inicial" id="splash" role="status" aria-label="Cargando">
   <div class="splash-logo"><div class="logo-grande" id="splash-logo"></div></div>
   <div class="splash-txt">Cargando menú</div>
 </div>
 
-<!-- ================= LOBBY: ¿Para llevar o comer aquí? ================= -->
+<!-- ================= @@LOBBY — BIENVENIDA: Para llevar / Delivery / Comer aquí ================= -->
 <div class="lobby oculto" id="lobby" role="dialog" aria-modal="true" aria-labelledby="lobby-titulo">
   <div class="lobby-in">
     <div class="logo-grande" id="lobby-logo"></div>
@@ -333,6 +374,7 @@ img{display:block;max-width:100%}
   <div class="header-in">
     <a href="#" class="marca" aria-label="Inicio">
       <div class="logo" id="logo"></div>
+      <!-- @@NOMBRE-ARRIBA -->
       <div class="display" id="nombre-negocio">PAPON <span>BURGER</span></div>
     </a>
     <label class="buscador" id="buscador-pc">
@@ -354,6 +396,7 @@ img{display:block;max-width:100%}
       <div><b id="modo-texto">Para llevar · Pasa a buscarlo</b><small id="sucursal"></small></div>
       <button class="cambiar" id="cambiar-modo">Cambiar</button>
     </div>
+    <!-- ================= @@INFO — HORARIO, DIRECCIÓN Y TELÉFONO (los datos se cambian en DATOS DEL NEGOCIO) ================= -->
     <div class="info" id="info">
       <div class="info-card">
         <span class="info-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
@@ -371,6 +414,7 @@ img{display:block;max-width:100%}
       </div>
     </div>
     <button class="hero" id="hero" aria-label="Ver el producto destacado"></button>
+    <!-- ================= @@PASOS — CÓMO PEDIR ================= -->
     <div class="pasos" aria-label="Cómo pedir">
       <div class="paso"><b>1</b><span>Elige tus favoritos</span></div>
       <div class="paso"><b>2</b><span>Agrégalos al carrito</span></div>
@@ -384,6 +428,7 @@ img{display:block;max-width:100%}
     <div id="menu"><div class="sin-js"><b>Para ver el menú, abre esta página en un navegador</b> (Safari, Chrome u Opera).<br>La vista previa de archivos del celular no puede mostrarla.</div></div>
     <aside class="carrito-lateral" id="carrito-lateral" aria-label="Tu pedido"></aside>
   </div>
+  <!-- ================= @@PIE — PIE DE PÁGINA ================= -->
   <footer class="contenedor pie">
     <div class="redes" id="redes"></div>
     <div class="datos" id="pie-datos"></div>
@@ -405,17 +450,17 @@ img{display:block;max-width:100%}
 
 <script>
 /* =========================================================
-   1. DATOS DEL NEGOCIO  (para otro cliente, cambia esto)
+   @@NEGOCIO — 1. DATOS DEL NEGOCIO  (para otro cliente, cambia esto)
    ========================================================= */
 const NEGOCIO = {
   nombre: "Papon Burger & Grill",
-  whatsapp: "19785664534",           // Número para pedidos: 1 + código de área + número, todo junto
-  telefono: "(978) 566-4534",         // Cómo se ve el teléfono en la página
-  direccion: "Calle 2, Santo Domingo Este, República Dominicana.",
-  sucursal: "Calle 2, Santo Domingo Este, República Dominicana.",
-  horario: { abre: "17:30", cierra: "01:00", texto: "5:30 PM – 1:00 AM" },   // Formato 24 horas. Si cierra después de medianoche, funciona igual
-  delivery: true,                     // true = aparece la opción "Delivery" y se pide la dirección
-  redes: {                            // Pega el enlace de cada red. Las que estén vacías no se muestran
+  whatsapp: "19785664534",           // @@WHATSAPP  Número para pedidos: 1 + código de área + número, todo junto
+  telefono: "(978) 566-4534",         // @@TELEFONO  Cómo se ve el teléfono en la página
+  direccion: "Calle C #3, Los Solares del Perla",   // @@DIRECCION  Se cambia solo aquí: sale en la barra, la bienvenida, la tarjeta y el pie
+  mapa: "",                           // @@MAPA  Enlace de Google Maps del lugar exacto (ej.: "https://maps.app.goo.gl/xxxx"). Vacío = busca la dirección
+  horario: { abre: "17:00", cierra: "02:00", texto: "5:00 PM – 2:00 AM" },   // @@HORARIO  Formato 24 horas. Si cierra después de medianoche, funciona igual
+  delivery: true,                     // @@DELIVERY  true = aparece la opción "Delivery" y se pide la dirección
+  redes: {                            // @@REDES  Pega el enlace de cada red. Las que estén vacías no se muestran
     instagram: "",
     facebook: "",
     tiktok: ""
@@ -423,24 +468,27 @@ const NEGOCIO = {
   moneda: "RD$",
   logo: "fotos/logo.png",             // Logo del negocio (vacío = se muestran las iniciales)
   iniciales: "PB",                    // Se usan mientras no haya logo
-  rebajaTodo: 0,                      // Rebaja en % para TODO el menú (ej.: 10 = 10% menos). 0 = sin rebaja general
+  rebajaTodo: 0,                      // @@REBAJA-TODO  Rebaja en % para TODO el menú (ej.: 10 = 10% menos). 0 = sin rebaja general
   panelDemo: true                     // true = los pedidos de mesa también llegan al Panel de mesas (demo en el mismo dispositivo)
 };
 
-const DESTACADO = "grill-master";     // Producto que sale grande arriba
+const DESTACADO = "grill-master";     // @@DESTACADO  Producto que sale grande arriba (escribe su id)
 
-/* REBAJAS — dos formas, en cualquier producto:
+/* @@REBAJAS — dos formas, en cualquier producto:
    1) Por porcentaje:   precio:545, rebaja:15        → la página calcula RD$ 463 y tacha RD$ 545
    2) Precio exacto:    precioAntes:830, precio:750  → tacha RD$ 830 y cobra RD$ 750
    Para quitar la rebaja, borra "rebaja" o "precioAntes". La etiqueta "-15%" sale sola. */
 /* Para poner una foto: guarda la imagen en la carpeta "fotos" y escribe img: "fotos/nombre.jpg"
    Mientras no haya foto, se muestra una ilustración de la categoría (arte: burger, parrilla, pollo, papas, bebida, postre) */
+/* ================= @@MENU — PRODUCTOS ================= */
 const MENU = [
+  /* ---------- @@OFERTAS ---------- */
   { id:"ofertas", nombre:"Ofertas", tab:"Ofertas", arte:"burger", sub:"Por tiempo limitado. Precio antes tachado.", grupos:[{ items:[
     { id:"combo-papon", nombre:"Combo Papon", tag:"OFERTA", precioAntes:830, precio:750, desc:"La Papon + Papas Rústicas + un refresco.", img:"https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=75" },
     { id:"dos-junior", nombre:"2 Papon Junior", tag:"OFERTA", precioAntes:650, precio:550, desc:"Dos Papon Junior con queso y papitas. Para compartir.", img:"https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?auto=format&fit=crop&w=800&q=75" },
     { id:"alitas-fria", nombre:"Alitas + Cerveza", tag:"OFERTA", precioAntes:695, precio:599, desc:"8 alitas BBQ o búfalo + una Presidente bien fría.", img:"https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=800&q=75" }
   ]}]},
+  /* ---------- @@HAMBURGUESAS ---------- */
   { id:"hamburguesas", nombre:"Hamburguesas", tab:"Hamburguesas", arte:"burger", sub:"100% carne magra, hecha al momento en la parrilla.", grupos:[{ items:[
     { id:"la-papon", nombre:"La Papon", tag:"MÁS PEDIDA", precio:545, desc:"6 oz de carne magra, queso cheddar, tocineta crujiente, cebolla caramelizada y salsa Papon en pan brioche.", img:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=75" },
     { id:"doble-magra", nombre:"Doble Magra", tag:"DOBLE", precio:695, desc:"Dos carnes magras de 4 oz, doble cheddar, pepinillos y salsa de la casa.", img:"https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=800&q=75" },
@@ -452,12 +500,14 @@ const MENU = [
     { id:"grill-master", nombre:"La Grill Master", tag:"PREMIUM", precio:1195, desc:"8 oz de carne magra madurada a la parrilla, provolone, cebolla al vino tinto y pan brioche tostado.", img:"https://images.unsplash.com/photo-1530554764233-e79e16c91d08?auto=format&fit=crop&w=1400&q=75" },
     { id:"papon-junior", nombre:"Papon Junior", precio:325, desc:"Carne magra de 3 oz con queso y papitas. Ideal para los más pequeños.", img:"https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=75" }
   ]}]},
+  /* ---------- @@PARRILLA ---------- */
   { id:"parrilla", nombre:"De la parrilla", tab:"Parrilla", arte:"parrilla", sub:"Cortes magros a la brasa, servidos con dos acompañantes.", grupos:[{ items:[
     { id:"churrasco", nombre:"Churrasco Papon 8 oz", tag:"DE LA CASA", precio:1150, desc:"Churrasco a la parrilla con chimichurri de la casa, papas rústicas y ensalada verde.", img:"https://images.unsplash.com/photo-1558030006-450675393462?auto=format&fit=crop&w=800&q=75" },
     { id:"pechuga-brasa", nombre:"Pechuga a la Brasa", precio:650, desc:"Pechuga de pollo marinada a la parrilla con vegetales asados y arroz blanco.", img:"https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=800&q=75" },
     { id:"costillas", nombre:"Costillas BBQ", precio:895, desc:"Costillas de cerdo glaseadas en BBQ ahumada, con papas fritas y ensalada de repollo.", img:"https://images.unsplash.com/photo-1544025162-d76694265947?auto=format&fit=crop&w=800&q=75" },
     { id:"pinchos", nombre:"Pinchos Mixtos", precio:595, desc:"Tres pinchos de res y pollo a la parrilla con pimientos, cebolla y salsa de ajo.", img:"https://images.unsplash.com/photo-1529193591184-b1d58069ecdd?auto=format&fit=crop&w=800&q=75" }
   ]}]},
+  /* ---------- @@POLLO ---------- */
   { id:"pollo", nombre:"Pollo y sándwiches", tab:"Pollo", arte:"pollo", grupos:[{ items:[
     { id:"crispy-chicken", nombre:"Crispy Chicken", precio:525, desc:"Pechuga de pollo crujiente, lechuga, pepinillos y mayo de miel mostaza en pan brioche.", img:"https://images.unsplash.com/photo-1705131186176-1c7cdb830815?auto=format&fit=crop&w=800&q=75" },
     { id:"chicken-grill", nombre:"Chicken Grill", precio:495, desc:"Pechuga a la parrilla, queso mozzarella, tomate y pesto.", img:"https://images.unsplash.com/photo-1707750795395-f9a4cababde9?auto=format&fit=crop&w=800&q=75" },
@@ -465,6 +515,7 @@ const MENU = [
     { id:"wrap-pollo", nombre:"Wrap de Pollo", precio:450, desc:"Tortilla con pollo a la parrilla, lechuga, tomate, queso y aderezo ranch.", img:"https://images.unsplash.com/photo-1716834092510-3be5db563920?auto=format&fit=crop&w=800&q=75" },
     { id:"alitas", nombre:"Alitas BBQ (8)", precio:495, desc:"Ocho alitas bañadas en BBQ o búfalo, con aderezo blue cheese.", img:"https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=800&q=75" }
   ]}]},
+  /* ---------- @@ACOMPANANTES ---------- */
   { id:"acompanantes", nombre:"Acompañantes", tab:"Acompañantes", arte:"papas", grupos:[{ items:[
     { id:"papas-papon", nombre:"Papas Papon", tag:"PARA COMPARTIR", precio:295, desc:"Papas fritas con queso cheddar derretido, tocineta y cebollín.", img:"https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=800&q=75" },
     { id:"papas-rusticas", nombre:"Papas Rústicas", precio:195, desc:"Papas con cáscara, sazonadas con ajo y romero.", img:"https://images.unsplash.com/photo-1630431341973-02e1b662ec35?auto=format&fit=crop&w=800&q=75" },
@@ -472,6 +523,7 @@ const MENU = [
     { id:"yuca-frita", nombre:"Yuca Frita", precio:195, desc:"Yuca frita dorada con salsa de ajo.", img:"https://images.unsplash.com/photo-1598679253544-2c97992403ea?auto=format&fit=crop&w=800&q=75" },
     { id:"tostones", nombre:"Tostones", precio:175, desc:"Tostones crujientes con sal y salsa rosada.", img:"https://images.unsplash.com/photo-1540714605746-4f474eefc6d4?auto=format&fit=crop&w=800&q=75" }
   ]}]},
+  /* ---------- @@BEBIDAS ---------- */
   { id:"bebidas", nombre:"Bebidas", tab:"Bebidas", arte:"bebida", chico:true, grupos:[
     { titulo:"Jugos naturales", items:[
       { id:"chinola", nombre:"Jugo de Chinola", precio:150, img:"https://images.unsplash.com/photo-1600271886742-f049cd451bba?auto=format&fit=crop&w=800&q=75" },
@@ -488,6 +540,7 @@ const MENU = [
       { id:"corona", nombre:"Corona", precio:250, img:"https://images.unsplash.com/photo-1608270586620-248524c67de9?auto=format&fit=crop&w=800&q=75" }
     ]}
   ]},
+  /* ---------- @@POSTRES ---------- */
   { id:"postres", nombre:"Postres", tab:"Postres", arte:"postre", grupos:[{ items:[
     { id:"brownie", nombre:"Brownie con Helado", precio:295, desc:"Brownie de chocolate caliente con helado de vainilla.", img:"https://images.unsplash.com/photo-1606884285898-277317a7bf12?auto=format&fit=crop&w=800&q=75" },
     { id:"cheesecake", nombre:"Cheesecake de Chinola", precio:275, desc:"Cheesecake cremoso con salsa de chinola.", img:"https://images.unsplash.com/photo-1708175313856-8573b2bf8a3a?auto=format&fit=crop&w=800&q=75" },
@@ -682,6 +735,7 @@ function htmlCarrito(){
     </div>`;
 }
 
+/* ================= @@FORMULARIO — CAMPOS QUE LLENA EL CLIENTE ================= */
 function htmlDatos(){
   const d = datosGuardados;
   return `<div class="carrito-cab"><h2 class="display">Tus datos</h2>${cerrarBtn()}</div>
@@ -769,6 +823,7 @@ function enviarACocina(raiz){
   carrito = []; guardar(); vistaCarrito = "enviado"; actualizarCarrito();
 }
 
+/* ================= @@MENSAJE — MENSAJE QUE LLEGA POR WHATSAPP ================= */
 function enviarPedido(raiz){
   const d = validar(raiz, false); if (!d) return;
   const lineas = carrito.map(l => {
@@ -884,16 +939,17 @@ function avisar(t){ const a = $("#aviso"); a.textContent = t; a.classList.add("v
 
 /* ---------- Arranque ---------- */
 document.title = NEGOCIO.nombre + " · Menú";
-$("#sucursal").textContent = NEGOCIO.sucursal;
+$("#sucursal").textContent = NEGOCIO.direccion;
 /* ---------- Logo (o iniciales si todavía no hay logo) ---------- */
 function logoHTML(){ return NEGOCIO.logo ? `<img src="${esc(NEGOCIO.logo)}" alt="Logo de ${esc(NEGOCIO.nombre)}">` : `<span>${esc(NEGOCIO.iniciales)}</span>`; }
 ["#logo","#splash-logo","#lobby-logo"].forEach(s => $(s).innerHTML = logoHTML());
 $("#splash-logo").style.fontSize = "44px";
-$("#lobby-direccion").textContent = NEGOCIO.sucursal;
+$("#lobby-direccion").textContent = NEGOCIO.direccion;
 
 /* ---------- Modo: para llevar o comer aquí ---------- */
 let modo = null;
 try { modo = sessionStorage.getItem("modo-" + NEGOCIO.nombre); } catch(e) {}
+/* @@TEXTOS-MODO — texto de la barra de arriba según la opción elegida */
 const TEXTO_MODO = { llevar:"Para llevar · Pasa a buscarlo", local:"Comer aquí · Te lo servimos en tu mesa", delivery:"Delivery · Te lo llevamos a tu casa" };
 const NOMBRE_MODO = { llevar:"Para llevar", local:"Comer aquí", delivery:"Delivery" };
 if (modo === "delivery" && !NEGOCIO.delivery) modo = null;
@@ -948,7 +1004,8 @@ const ICONOS_REDES = {
 function pintarInfo(){
   const num = String(NEGOCIO.whatsapp).replace(/\D/g, "");
   $("#direccion").textContent = NEGOCIO.direccion;
-  $("#mapa").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(NEGOCIO.direccion);
+  const m = (NEGOCIO.mapa || "").trim();
+  $("#mapa").href = m.startsWith("http") ? m : "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(m || NEGOCIO.direccion);   // también acepta coordenadas: "18.4861,-69.9312"
   $("#telefono").textContent = NEGOCIO.telefono;
   $("#llamar").href = "tel:+" + num;
   if (!NEGOCIO.delivery) $("#modo-delivery").remove();
