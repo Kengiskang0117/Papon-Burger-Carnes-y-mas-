@@ -212,6 +212,34 @@ img{display:block;max-width:100%}
 .retiro .cambiar{margin-left:auto;height:36px;padding:0 14px;border-radius:999px;border:1px solid var(--acento);background:transparent;color:var(--acento-texto);font-weight:700;font-size:13px;flex:0 0 auto}
 @media (prefers-reduced-motion:reduce){.splash-logo .logo-grande,.splash-logo::after{animation:none}}
 
+/* ---------- Información del negocio ---------- */
+.info{margin-top:12px;display:grid;grid-template-columns:1fr;gap:10px}
+.info-card{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:14px;background:var(--tarjeta);border:1px solid var(--borde);min-width:0}
+.info-ico{flex:0 0 40px;height:40px;border-radius:12px;background:var(--acento-oscuro);color:var(--acento-texto);display:flex;align-items:center;justify-content:center}
+.info-txt{flex:1;min-width:0}
+.info-txt b{display:block;font-size:14px}
+.info-txt small{display:block;color:var(--texto-suave);font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.info-acc{display:flex;gap:6px;flex:0 0 auto}
+.info-acc a{height:34px;padding:0 12px;border-radius:999px;border:1px solid var(--acento);color:var(--acento-texto);text-decoration:none;font-size:12px;font-weight:700;display:flex;align-items:center}
+.info-txt b.estado{display:flex;align-items:center;gap:8px}
+.estado i{flex:0 0 9px;width:9px;height:9px;border-radius:50%;background:#3DDC84;box-shadow:0 0 0 4px rgba(61,220,132,.18)}
+.estado.cerrado i{background:#8C867E;box-shadow:none}
+.pasos{margin-top:14px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.paso{position:relative;padding:12px 10px 12px 12px;border-radius:14px;background:linear-gradient(135deg,var(--acento-oscuro),var(--tarjeta) 70%);border:1px solid var(--borde)}
+.paso b{display:block;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:26px;line-height:1;color:var(--acento-texto)}
+.paso span{display:block;font-size:12.5px;font-weight:700;line-height:1.3;margin-top:4px}
+#modo-icono{display:flex;flex:0 0 auto}
+.sello{position:absolute;top:8px;left:8px;z-index:2;background:#F2C230;color:#111;font-weight:800;font-size:12px;letter-spacing:0;padding:3px 8px;border-radius:999px;text-transform:none}
+.precios{display:inline-flex;align-items:baseline;flex-wrap:wrap}
+.antes{color:#8C867E;text-decoration:line-through;font-size:13px;margin-right:6px;font-weight:500}
+.aviso-cerrado{padding:10px 12px;border-radius:12px;background:#2A2410;border:1px solid #5A4A14;color:#F2C230;font-size:13px}
+.pie{padding:34px 0 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;border-top:1px solid #1F1F1F;margin-top:20px}
+.pie .redes{display:flex;gap:10px}
+.pie .redes a{width:44px;height:44px;border-radius:50%;background:var(--tarjeta);border:1px solid var(--borde);color:var(--texto);display:flex;align-items:center;justify-content:center}
+.pie .redes a:hover{border-color:var(--acento);color:var(--acento-texto)}
+.pie .datos{color:#A8A29A;font-size:13px;line-height:1.6}
+.pie .firma{color:#6E6A63;font-size:12px}
+
 /* Aviso "Agregado" */
 .aviso{position:fixed;left:50%;bottom:92px;z-index:60;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#F5F1E8;color:#111;font-weight:700;font-size:14px;padding:12px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:all .25s;white-space:nowrap}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
@@ -249,7 +277,11 @@ img{display:block;max-width:100%}
   .panel.detalle .agarre{display:none}
   .panel.carrito-movil{display:none}
   .aviso{bottom:32px}
-  .modos{grid-template-columns:1fr 1fr}
+  .info{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .paso{padding:16px 18px}
+  .paso span{font-size:14px}
+  .lobby-in{max-width:860px}
+  .modos{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}
   .modo{flex-direction:column;align-items:flex-start;padding:26px}
   .modo-icono{flex:0 0 auto;width:60px;height:60px}
   .modo .flecha{display:none}
@@ -279,6 +311,11 @@ img{display:block;max-width:100%}
       <button class="modo" data-modo="llevar">
         <span class="modo-icono"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span>
         <span><b>Para llevar</b><small>Pide y pasa a buscarlo</small></span>
+        <svg class="flecha" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+      </button>
+      <button class="modo" data-modo="delivery" id="modo-delivery">
+        <span class="modo-icono"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="17" r="2.5"/><circle cx="18" cy="17" r="2.5"/><path d="M8.5 17h7M4 13h7l2-5h3l2.5 6.5"/><path d="M13 8h-3"/></svg></span>
+        <span><b>Delivery</b><small>Te lo llevamos a tu casa</small></span>
         <svg class="flecha" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
       </button>
       <button class="modo" data-modo="local">
@@ -313,11 +350,32 @@ img{display:block;max-width:100%}
 <main>
   <div class="contenedor">
     <div class="retiro">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF4D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg>
+      <span id="modo-icono"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FF4D55" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6z"/><path d="M9 8a3 3 0 0 1 6 0"/></svg></span>
       <div><b id="modo-texto">Para llevar · Pasa a buscarlo</b><small id="sucursal"></small></div>
       <button class="cambiar" id="cambiar-modo">Cambiar</button>
     </div>
+    <div class="info" id="info">
+      <div class="info-card">
+        <span class="info-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+        <div class="info-txt"><b class="estado" id="estado"><i></i><span>Abierto</span></b><small id="horario"></small></div>
+      </div>
+      <div class="info-card">
+        <span class="info-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+        <div class="info-txt"><b>Dirección</b><small id="direccion"></small></div>
+        <div class="info-acc"><a id="mapa" href="#" target="_blank" rel="noopener">Cómo llegar</a></div>
+      </div>
+      <div class="info-card">
+        <span class="info-ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span>
+        <div class="info-txt"><b>Teléfono</b><small id="telefono"></small></div>
+        <div class="info-acc"><a id="llamar" href="#">Llamar</a></div>
+      </div>
+    </div>
     <button class="hero" id="hero" aria-label="Ver el producto destacado"></button>
+    <div class="pasos" aria-label="Cómo pedir">
+      <div class="paso"><b>1</b><span>Elige tus favoritos</span></div>
+      <div class="paso"><b>2</b><span>Agrégalos al carrito</span></div>
+      <div class="paso"><b>3</b><span id="paso3">Envía tu pedido por WhatsApp</span></div>
+    </div>
   </div>
 
   <nav class="pestanas" aria-label="Categorías"><div class="pestanas-in" id="pestanas"></div></nav>
@@ -326,7 +384,11 @@ img{display:block;max-width:100%}
     <div id="menu"><div class="sin-js"><b>Para ver el menú, abre esta página en un navegador</b> (Safari, Chrome u Opera).<br>La vista previa de archivos del celular no puede mostrarla.</div></div>
     <aside class="carrito-lateral" id="carrito-lateral" aria-label="Tu pedido"></aside>
   </div>
-  <div class="contenedor pie-pagina">Diseño y desarrollo: Kengis Florentino · Fotos: Unsplash</div>
+  <footer class="contenedor pie">
+    <div class="redes" id="redes"></div>
+    <div class="datos" id="pie-datos"></div>
+    <div class="firma">Diseño y desarrollo: Kengis Florentino · Fotos: Unsplash</div>
+  </footer>
 </main>
 
 <!-- Barra amarilla (solo celular) -->
@@ -347,19 +409,38 @@ img{display:block;max-width:100%}
    ========================================================= */
 const NEGOCIO = {
   nombre: "Papon Burger & Grill",
-  whatsapp: "19785664534",           // Pon TU número para que los pedidos de prueba te lleguen a ti (1 + 809 + número)
-  sucursal: "Santo Domingo, República Dominicana",
+  whatsapp: "19785664534",           // Número para pedidos: 1 + código de área + número, todo junto
+  telefono: "(978) 566-4534",         // Cómo se ve el teléfono en la página
+  direccion: "Calle C #3, Los Solares del Perla",
+  sucursal: "Calle C #3, Los Solares del Perla",
+  horario: { abre: "17:00", cierra: "02:00", texto: "5:00 PM – 2:00 AM" },   // Formato 24 horas. Si cierra después de medianoche, funciona igual
+  delivery: true,                     // true = aparece la opción "Delivery" y se pide la dirección
+  redes: {                            // Pega el enlace de cada red. Las que estén vacías no se muestran
+    instagram: "",
+    facebook: "",
+    tiktok: ""
+  },
   moneda: "RD$",
   logo: "fotos/logo.png",             // Logo del negocio (vacío = se muestran las iniciales)
   iniciales: "PB",                    // Se usan mientras no haya logo
+  rebajaTodo: 0,                      // Rebaja en % para TODO el menú (ej.: 10 = 10% menos). 0 = sin rebaja general
   panelDemo: true                     // true = los pedidos de mesa también llegan al Panel de mesas (demo en el mismo dispositivo)
 };
 
 const DESTACADO = "grill-master";     // Producto que sale grande arriba
 
+/* REBAJAS — dos formas, en cualquier producto:
+   1) Por porcentaje:   precio:545, rebaja:15        → la página calcula RD$ 463 y tacha RD$ 545
+   2) Precio exacto:    precioAntes:830, precio:750  → tacha RD$ 830 y cobra RD$ 750
+   Para quitar la rebaja, borra "rebaja" o "precioAntes". La etiqueta "-15%" sale sola. */
 /* Para poner una foto: guarda la imagen en la carpeta "fotos" y escribe img: "fotos/nombre.jpg"
    Mientras no haya foto, se muestra una ilustración de la categoría (arte: burger, parrilla, pollo, papas, bebida, postre) */
 const MENU = [
+  { id:"ofertas", nombre:"Ofertas", tab:"Ofertas", arte:"burger", sub:"Por tiempo limitado. Precio antes tachado.", grupos:[{ items:[
+    { id:"combo-papon", nombre:"Combo Papon", tag:"OFERTA", precioAntes:830, precio:750, desc:"La Papon + Papas Rústicas + un refresco.", img:"https://images.unsplash.com/photo-1551782450-a2132b4ba21d?auto=format&fit=crop&w=800&q=75" },
+    { id:"dos-junior", nombre:"2 Papon Junior", tag:"OFERTA", precioAntes:650, precio:550, desc:"Dos Papon Junior con queso y papitas. Para compartir.", img:"https://images.unsplash.com/photo-1596662951482-0c4ba74a6df6?auto=format&fit=crop&w=800&q=75" },
+    { id:"alitas-fria", nombre:"Alitas + Cerveza", tag:"OFERTA", precioAntes:695, precio:599, desc:"8 alitas BBQ o búfalo + una Presidente bien fría.", img:"https://images.unsplash.com/photo-1567620832903-9fc6debc209f?auto=format&fit=crop&w=800&q=75" }
+  ]}]},
   { id:"hamburguesas", nombre:"Hamburguesas", tab:"Hamburguesas", arte:"burger", sub:"100% carne magra, hecha al momento en la parrilla.", grupos:[{ items:[
     { id:"la-papon", nombre:"La Papon", tag:"MÁS PEDIDA", precio:545, desc:"6 oz de carne magra, queso cheddar, tocineta crujiente, cebolla caramelizada y salsa Papon en pan brioche.", img:"https://images.unsplash.com/photo-1550547660-d9450f859349?auto=format&fit=crop&w=800&q=75" },
     { id:"doble-magra", nombre:"Doble Magra", tag:"DOBLE", precio:695, desc:"Dos carnes magras de 4 oz, doble cheddar, pepinillos y salsa de la casa.", img:"https://images.unsplash.com/photo-1607013251379-e6eecfffe234?auto=format&fit=crop&w=800&q=75" },
@@ -429,6 +510,20 @@ const ARTE = {
    (no hace falta tocarlo para cambiar productos)
    ========================================================= */
 const $ = (s) => document.querySelector(s);
+/* Aplica las rebajas (no tocar) */
+MENU.forEach(sec => sec.grupos.forEach(g => g.items.forEach(p => {
+  if (p.precio == null || p.precioAntes) return;
+  const pct = p.rebaja != null ? p.rebaja : (NEGOCIO.rebajaTodo || 0);
+  if (pct > 0) { p.precioAntes = p.precio; p.precio = Math.round(p.precio * (1 - pct / 100)); }
+})));
+function precioHTML(p, tam){
+  const t = tam ? ` style="font-size:${tam}px"` : "";
+  return `<span class="precios">${p.precioAntes ? `<span class="antes">${dinero(p.precioAntes)}</span>` : ""}<span class="precio"${t}>${dinero(p.precio)}</span></span>`;
+}
+function seloRebaja(p){
+  if (!p.precioAntes || p.precioAntes <= p.precio) return "";
+  return `<span class="sello">-${Math.round((1 - p.precio / p.precioAntes) * 100)}%</span>`;
+}
 const PRODUCTOS = {};
 MENU.forEach(sec => sec.grupos.forEach(g => g.items.forEach(p => { PRODUCTOS[p.id] = { ...p, chico: !!sec.chico, arte: sec.arte }; })));
 
@@ -465,11 +560,11 @@ function pintarMenu(filtro = ""){
 }
 
 function tarjeta(p, chico){
-  const precio = p.precio == null ? `<span class="pendiente">[Precio pendiente]</span>` : `<span class="precio">${dinero(p.precio)}</span>`;
+  const precio = p.precio == null ? `<span class="pendiente">[Precio pendiente]</span>` : precioHTML(p);
   const desc = p.desc ? `<p class="p-desc">${textoPendiente(p.desc)}</p>` : "";
   const tag = p.tag ? `<span class="p-tag">${esc(p.tag)}</span>` : "";
   return `<button class="producto${chico ? " chico" : ""}" data-id="${p.id}" aria-label="Ver ${esc(p.nombre)}">
-    <div class="foto">${fotoHTML(PRODUCTOS[p.id])}</div>
+    <div class="foto">${fotoHTML(PRODUCTOS[p.id])}${seloRebaja(p)}</div>
     <div class="p-info">
       <div class="p-nombre">${textoPendiente(p.nombre)}${tag}</div>
       ${desc}
@@ -484,12 +579,12 @@ function pintarPestanas(){
 
 function pintarHero(){
   const p = PRODUCTOS[DESTACADO];
-  $("#hero").innerHTML = `<div class="foto">${fotoHTML(p, "Foto grande · " + p.nombre)}</div>
+  $("#hero").innerHTML = `<div class="foto">${fotoHTML(p, "Foto grande · " + p.nombre)}${seloRebaja(p)}</div>
     <div class="hero-txt">
       <span class="etiqueta">LA ESTRELLA DE LA CASA</span>
       <h1 class="display">${esc(p.nombre)}</h1>
       <p>${esc(p.desc)}</p>
-      <div class="hero-pie"><span class="precio" style="font-size:22px">${dinero(p.precio)}</span><span class="btn-acento">${ICONO_MAS} Agregar</span></div>
+      <div class="hero-pie">${precioHTML(p, 22)}<span class="btn-acento">${ICONO_MAS} Agregar</span></div>
     </div>`;
   $("#hero").dataset.id = p.id;
 }
@@ -580,7 +675,7 @@ function htmlCarrito(){
       ${items}
       <div class="resumen">
         <div class="linea"><span>Artículos</span><span>${totalArticulos()}</span></div>
-        <div class="linea"><span>Servicio</span><span>${modo === "local" ? "Comer aquí" : "Para llevar"}</span></div>
+        <div class="linea"><span>Servicio</span><span>${NOMBRE_MODO[modo] || "Para llevar"}</span></div>
         <div class="total-linea"><span>Total</span><span class="precio">${dinero(totalDinero())}</span></div>
       </div>
       <button class="btn-acento" data-acc="continuar" style="height:54px;width:100%">Continuar · ${dinero(totalDinero())}</button>
@@ -592,6 +687,7 @@ function htmlDatos(){
   return `<div class="carrito-cab"><h2 class="display">Tus datos</h2>${cerrarBtn()}</div>
     <div class="carrito-cuerpo">
       <button class="volver" data-acc="volver">← Volver al pedido</button>
+      ${!estaAbierto() ? `<div class="aviso-cerrado">Ahora estamos cerrados. Puedes enviar tu pedido y lo atendemos al abrir (${esc(NEGOCIO.horario.texto)}).</div>` : ""}
       <div class="campo"><label for="f-nombre">Nombre y apellido</label><input id="f-nombre" type="text" placeholder="Tu nombre completo" value="${esc(d.nombre)}" autocomplete="name"></div>
       <div class="campo"><label for="f-tel">Teléfono / WhatsApp</label><input id="f-tel" type="tel" placeholder="809-000-0000" value="${esc(d.tel)}" autocomplete="tel"></div>
       <div class="campo"><span class="lbl">Método de pago</span>
@@ -600,9 +696,11 @@ function htmlDatos(){
         </div>
       </div>
       ${pago === "Efectivo" ? `<div class="campo"><label for="f-cambio">¿Con cuánto vas a pagar? (para tu cambio)</label><input id="f-cambio" type="text" inputmode="numeric" placeholder="${NEGOCIO.moneda} 2,000" value="${esc(d.cambio)}"></div>` : ""}
+      ${modo === "delivery" ? `<div class="campo"><label for="f-dir">Dirección de entrega</label><input id="f-dir" type="text" placeholder="Calle, número, sector" value="${esc(d.dir)}" autocomplete="street-address"></div>
+      <div class="campo"><label for="f-ref">Referencia (opcional)</label><input id="f-ref" type="text" placeholder="Ej.: casa blanca, al lado del colmado" value="${esc(d.ref)}"></div>` : ""}
       ${modo === "local" ? `<div class="campo"><label for="f-mesa">Número de mesa</label><input id="f-mesa" type="text" inputmode="numeric" placeholder="Ej.: 5" value="${esc(d.mesa)}" ${mesaQR ? "readonly" : ""}>${mesaQR ? `<small style="color:var(--texto-suave)">Detectada por el código QR de tu mesa</small>` : ""}</div>` : ""}
       <label class="check"><input type="checkbox" id="f-comprobante" ${d.comprobante ? "checked" : ""}> Necesito comprobante fiscal</label>
-      <div class="campo"><label for="f-notas">Notas para el pedido (opcional)</label><textarea id="f-notas" rows="2" placeholder="${modo === "local" ? "Ej.: traer las bebidas primero" : "Ej.: paso a buscarlo a las 7:30"}">${esc(d.notas)}</textarea></div>
+      <div class="campo"><label for="f-notas">Notas para el pedido (opcional)</label><textarea id="f-notas" rows="2" placeholder="${modo === "local" ? "Ej.: traer las bebidas primero" : modo === "delivery" ? "Ej.: tocar el timbre, llamar al llegar" : "Ej.: paso a buscarlo a las 7:30"}">${esc(d.notas)}</textarea></div>
       <div class="resumen"><div class="total-linea" style="border:none;padding:0;margin:0"><span>Total</span><span class="precio">${dinero(totalDinero())}</span></div></div>
       <div class="error" id="f-error" role="alert"></div>
       ${modo === "local" && NEGOCIO.panelDemo ? `<button class="btn-acento" data-acc="cocina" style="height:54px;width:100%">
@@ -617,7 +715,7 @@ function htmlDatos(){
 }
 function cerrarBtn(){ return `<button class="cerrar solo-movil" data-acc="cerrar" aria-label="Cerrar">${ICONO_X}</button>`; }
 
-let datosGuardados = { nombre:"", tel:"", cambio:"", mesa:"", comprobante:false, notas:"" };
+let datosGuardados = { nombre:"", tel:"", cambio:"", mesa:"", dir:"", ref:"", comprobante:false, notas:"" };
 function leerDatos(raiz){
   const v = s => raiz.querySelector(s);
   if (!v("#f-nombre")) return;
@@ -625,6 +723,8 @@ function leerDatos(raiz){
     nombre: v("#f-nombre").value, tel: v("#f-tel").value,
     cambio: v("#f-cambio") ? v("#f-cambio").value : datosGuardados.cambio,
     mesa: v("#f-mesa") ? v("#f-mesa").value : datosGuardados.mesa,
+    dir: v("#f-dir") ? v("#f-dir").value : datosGuardados.dir,
+    ref: v("#f-ref") ? v("#f-ref").value : datosGuardados.ref,
     comprobante: v("#f-comprobante").checked, notas: v("#f-notas").value
   };
 }
@@ -644,6 +744,7 @@ function validar(raiz, paraCocina){
   leerDatos(raiz);
   const d = datosGuardados, err = raiz.querySelector("#f-error");
   if (d.nombre.trim().length < 2) { err.textContent = "Escribe tu nombre para el pedido."; raiz.querySelector("#f-nombre").focus(); return null; }
+  if (modo === "delivery" && d.dir.trim().length < 5) { err.textContent = "Escribe la dirección de entrega."; raiz.querySelector("#f-dir").focus(); return null; }
   if (modo === "local" && !d.mesa.trim()) { err.textContent = "Escribe el número de tu mesa."; raiz.querySelector("#f-mesa").focus(); return null; }
   if (!paraCocina && d.tel.replace(/\D/g, "").length < 10) { err.textContent = "Escribe un teléfono válido (10 dígitos)."; raiz.querySelector("#f-tel").focus(); return null; }
   err.textContent = "";
@@ -674,9 +775,11 @@ function enviarPedido(raiz){
     const p = PRODUCTOS[l.id];
     return `• ${l.cant} x ${p.nombre} — ${dinero(p.precio * l.cant)}${l.nota ? `\n   Nota: ${l.nota}` : ""}`;
   }).join("\n");
-  const servicio = modo === "local" ? `para comer en el local${d.mesa.trim() ? " (mesa " + d.mesa.trim() + ")" : ""}` : "para llevar";
+  const servicio = modo === "local" ? `para comer en el local${d.mesa.trim() ? " (mesa " + d.mesa.trim() + ")" : ""}` : modo === "delivery" ? "para delivery" : "para llevar";
   let msg = `¡Hola ${NEGOCIO.nombre}! Quiero hacer este pedido ${servicio}:\n\n${lineas}\n\n*Total: ${dinero(totalDinero())}*\n\n`;
-  msg += `Nombre: ${d.nombre}\nTeléfono: ${d.tel}\nPago: ${pago}`;
+  msg += `Nombre: ${d.nombre}\nTeléfono: ${d.tel}`;
+  if (modo === "delivery") msg += `\nDirección: ${d.dir}${d.ref.trim() ? `\nReferencia: ${d.ref}` : ""}`;
+  msg += `\nPago: ${pago}`;
   if (pago === "Efectivo" && d.cambio.trim()) msg += ` (pago con ${d.cambio})`;
   if (d.comprobante) msg += `\nNecesito comprobante fiscal`;
   if (d.notas.trim()) msg += `\nNotas: ${d.notas}`;
@@ -711,7 +814,7 @@ function clicCarrito(e){
   }
 }
 $("#carrito-lateral").addEventListener("click", clicCarrito);
-function escribirDatos(e){ if (e.target.closest("#f-nombre,#f-tel,#f-cambio,#f-mesa,#f-comprobante,#f-notas")) leerDatos(e.currentTarget); }
+function escribirDatos(e){ if (e.target.closest("#f-nombre,#f-tel,#f-cambio,#f-mesa,#f-dir,#f-ref,#f-comprobante,#f-notas")) leerDatos(e.currentTarget); }
 ["#carrito-lateral","#carrito-movil"].forEach(s => { $(s).addEventListener("input", escribirDatos); $(s).addEventListener("change", escribirDatos); });
 $("#carrito-movil").addEventListener("click", clicCarrito);
 
@@ -728,7 +831,7 @@ function abrirDetalle(id){
       <button class="cerrar" data-acc="cerrar" aria-label="Cerrar">${ICONO_X}</button>
     </div>
     <div class="detalle-txt">
-      <div class="fila"><h3 class="display" id="det-nombre">${esc(p.nombre)}</h3>${sinPrecio ? `<span class="pendiente">[Precio pendiente]</span>` : `<span class="precio" style="font-size:24px">${dinero(p.precio)}</span>`}</div>
+      <div class="fila"><h3 class="display" id="det-nombre">${esc(p.nombre)}</h3>${sinPrecio ? `<span class="pendiente">[Precio pendiente]</span>` : precioHTML(p, 24)}</div>
       ${p.desc ? `<p>${textoPendiente(p.desc)}</p>` : ""}
       <div class="campo" style="margin-top:8px"><label for="det-nota">Notas para la cocina (opcional)</label><textarea id="det-nota" rows="2" placeholder="Ej.: sin cebolla, término medio…"></textarea></div>
     </div>
@@ -791,7 +894,9 @@ $("#lobby-direccion").textContent = NEGOCIO.sucursal;
 /* ---------- Modo: para llevar o comer aquí ---------- */
 let modo = null;
 try { modo = sessionStorage.getItem("modo-" + NEGOCIO.nombre); } catch(e) {}
-const TEXTO_MODO = { llevar:"Para llevar · Pasa a buscarlo", local:"Comer aquí · Te lo servimos en tu mesa" };
+const TEXTO_MODO = { llevar:"Para llevar · Pasa a buscarlo", local:"Comer aquí · Te lo servimos en tu mesa", delivery:"Delivery · Te lo llevamos a tu casa" };
+const NOMBRE_MODO = { llevar:"Para llevar", local:"Comer aquí", delivery:"Delivery" };
+if (modo === "delivery" && !NEGOCIO.delivery) modo = null;
 
 /* QR por mesa: el enlace ...index.html?mesa=5 ya sabe que es la mesa 5 */
 const mesaQR = (new URLSearchParams(location.search).get("mesa") || "").replace(/[^0-9A-Za-z-]/g, "").slice(0, 6);
@@ -810,6 +915,7 @@ function elegirModo(m){
   modo = m;
   try { sessionStorage.setItem("modo-" + NEGOCIO.nombre, m); } catch(e) {}
   $("#modo-texto").textContent = TEXTO_MODO[m];
+  actualizarPaso3();
   actualizarCarrito();
   mostrarSplash(700, () => { $("#lobby").classList.add("oculto"); document.body.style.overflow = ""; window.scrollTo(0, 0); });
 }
@@ -817,9 +923,51 @@ $("#lobby").addEventListener("click", e => { const b = e.target.closest(".modo")
 $("#cambiar-modo").addEventListener("click", mostrarLobby);
 if (mesaQR) $("#cambiar-modo").hidden = true;   // si viene del QR de la mesa, no hace falta cambiar
 
+/* ---------- Horario: abierto o cerrado ---------- */
+function minutosDe(hhmm){ const [h, m] = hhmm.split(":").map(Number); return h * 60 + (m || 0); }
+function estaAbierto(){
+  const ahora = new Date(), m = ahora.getHours() * 60 + ahora.getMinutes();
+  const a = minutosDe(NEGOCIO.horario.abre), c = minutosDe(NEGOCIO.horario.cierra);
+  return a < c ? (m >= a && m < c) : (m >= a || m < c);   // si cierra después de medianoche
+}
+function horaBonita(hhmm){ const [h, m] = hhmm.split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; return `${(h % 12) || 12}:${String(m || 0).padStart(2, "0")} ${ap}`; }
+function pintarEstado(){
+  const abierto = estaAbierto();
+  $("#estado").classList.toggle("cerrado", !abierto);
+  $("#estado span").textContent = abierto ? "Abierto ahora" : `Cerrado · Abrimos a las ${horaBonita(NEGOCIO.horario.abre)}`;
+  $("#horario").textContent = (NEGOCIO.delivery ? "Delivery y local: " : "Horario: ") + NEGOCIO.horario.texto;
+}
+
+/* ---------- Información, redes y pie ---------- */
+const ICONOS_REDES = {
+  instagram:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
+  facebook:'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3a4 4 0 0 0-4 4v2H7v4h3v8h4v-8h3l1-4h-4V8z"/></svg>',
+  tiktok:'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16 3c.4 2.3 1.9 3.8 4 4v3.2c-1.5 0-2.8-.4-4-1.2V15a6 6 0 1 1-6-6v3.3A2.7 2.7 0 1 0 12.7 15V3z"/></svg>',
+  whatsapp:'<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.7.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6a2.7 2.7 0 0 0 1.8-1.3 2.2 2.2 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>'
+};
+function pintarInfo(){
+  const num = String(NEGOCIO.whatsapp).replace(/\D/g, "");
+  $("#direccion").textContent = NEGOCIO.direccion;
+  $("#mapa").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(NEGOCIO.direccion);
+  $("#telefono").textContent = NEGOCIO.telefono;
+  $("#llamar").href = "tel:+" + num;
+  if (!NEGOCIO.delivery) $("#modo-delivery").remove();
+  const redes = Object.entries(NEGOCIO.redes || {}).filter(([, url]) => url).map(([red, url]) => `<a href="${esc(url)}" target="_blank" rel="noopener" aria-label="${red}">${ICONOS_REDES[red] || ""}</a>`);
+  redes.push(`<a href="https://api.whatsapp.com/send?phone=${num}" target="_blank" rel="noopener" aria-label="WhatsApp">${ICONOS_REDES.whatsapp}</a>`);
+  $("#redes").innerHTML = redes.join("");
+  $("#pie-datos").innerHTML = `${esc(NEGOCIO.direccion)}<br>${esc(NEGOCIO.telefono)} · ${esc(NEGOCIO.horario.texto)}${NEGOCIO.delivery ? " · Delivery" : ""}`;
+  pintarEstado();
+  setInterval(pintarEstado, 60000);
+}
+function actualizarPaso3(){
+  const ico = document.querySelector(`.modo[data-modo="${modo}"] .modo-icono svg`);
+  if (ico) { const c = ico.cloneNode(true); c.setAttribute("width", "20"); c.setAttribute("height", "20"); c.style.color = "#FF4D55"; $("#modo-icono").replaceChildren(c); } $("#paso3").textContent = modo === "local" && NEGOCIO.panelDemo ? "Envía tu pedido a la cocina" : "Envía tu pedido por WhatsApp"; }
+
 /* ---------- Arranque ---------- */
+pintarInfo();
 pintarHero(); pintarPestanas(); pintarMenu();
 if (modo) $("#modo-texto").textContent = TEXTO_MODO[modo];
+actualizarPaso3();
 actualizarCarrito();
 // Al abrir la página (por ejemplo, al escanear el QR): logo cargando → lobby
 mostrarSplash(1300, () => { if (!modo) mostrarLobby(); });
