@@ -287,6 +287,11 @@ img{display:block;max-width:100%}
 .pie .firma{color:#6E6A63;font-size:12px}
 
 /* Aviso "Agregado" */
+  /* @@FOTO-RESPALDO — Logo transparente cuando no hay foto o mientras carga.
+      Para hacerlo más visible baja el .62 (ej.: .50); para más suave súbelo (ej.: .75).
+      Para volver a los dibujos, borra este bloque completo. */
+   .arte svg{display:none}
+   .arte{background:linear-gradient(rgba(22,9,9,.62),rgba(22,9,9,.62)), url("fotos/logo.png") center / 58% no-repeat, #160909}
 .aviso{position:fixed;left:50%;bottom:92px;z-index:60;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#F5F1E8;color:#111;font-weight:700;font-size:14px;padding:12px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:all .25s;white-space:nowrap}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
 
