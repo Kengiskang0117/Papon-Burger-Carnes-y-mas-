@@ -461,12 +461,12 @@ const NEGOCIO = {
   nombre: "Papon Burger & Grill",
   whatsapp: "19785664534",           // @@WHATSAPP  Número para pedidos: 1 + código de área + número, todo junto
   telefono: "(978) 566-4534",         // @@TELEFONO  Cómo se ve el teléfono en la página
-  direccion: "Calle C #3, Los Solares del Perla",   // @@DIRECCION  Se cambia solo aquí: sale en la barra, la bienvenida, la tarjeta y el pie
-  mapa: "",                           // @@MAPA  Enlace de Google Maps del lugar exacto (ej.: "https://maps.app.goo.gl/xxxx"). Vacío = busca la dirección
-  horario: { abre: "17:00", cierra: "02:00", texto: "5:00 PM – 2:00 AM" },   // @@HORARIO  Formato 24 horas. Si cierra después de medianoche, funciona igual
+  direccion: "C. Principal, Santo Domingo Este",   // @@DIRECCION  Se cambia solo aquí: sale en la barra, la bienvenida, la tarjeta y el pie
+  mapa: "https://www.google.com/maps/place/Colmado+Fabio+1/@18.5381823,-69.8243417,17z/data=!3m1!4b1!4m6!3m5!1s0x8eaf8704d429857b:0xe52c8c5e5e8b14e1!8m2!3d18.5381823!4d-69.8217614!16s%2Fg%2F11fj1zkxvr?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D",                           // @@MAPA  Enlace de Google Maps del lugar exacto (ej.: "https://maps.app.goo.gl/xxxx"). Vacío = busca la dirección
+  horario: { abre: "17:30", cierra: "12:30", texto: "5:30 PM – 12:30 AM" },   // @@HORARIO  Formato 24 horas. Si cierra después de medianoche, funciona igual
   delivery: true,                     // @@DELIVERY  true = aparece la opción "Delivery" y se pide la dirección
   redes: {                            // @@REDES  Pega el enlace de cada red. Las que estén vacías no se muestran
-    instagram: "",
+    instagram: "https://www.instagram.com/misterkratos12/",
     facebook: "",
     tiktok: ""
   },
@@ -474,7 +474,7 @@ const NEGOCIO = {
   logo: "fotos/logo.png",             // Logo del negocio (vacío = se muestran las iniciales)
   iniciales: "PB",                    // Se usan mientras no haya logo
   rebajaTodo: 0,                      // @@REBAJA-TODO  Rebaja en % para TODO el menú (ej.: 10 = 10% menos). 0 = sin rebaja general
-  llamadas: true,                     // @@LLAMADAS  true = al lado de WhatsApp sale el botoncito de llamar · false = solo WhatsApp
+  llamadas: false,                     // @@LLAMADAS  true = al lado de WhatsApp sale el botoncito de llamar · false = solo WhatsApp
   panelDemo: true                     // true = los pedidos de mesa también llegan al Panel de mesas (demo en el mismo dispositivo)
 };
 
