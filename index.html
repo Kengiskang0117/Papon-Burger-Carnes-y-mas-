@@ -468,7 +468,7 @@ const NEGOCIO = {
   telefono: "(978) 566-4534",         // @@TELEFONO  Cómo se ve el teléfono en la página
   direccion: "C. Principal, Santo Domingo Este",   // @@DIRECCION  Se cambia solo aquí: sale en la barra, la bienvenida, la tarjeta y el pie
   mapa: "https://www.google.com/maps/place/Colmado+Fabio+1/@18.5381823,-69.8243417,17z/data=!3m1!4b1!4m6!3m5!1s0x8eaf8704d429857b:0xe52c8c5e5e8b14e1!8m2!3d18.5381823!4d-69.8217614!16s%2Fg%2F11fj1zkxvr?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D",                           // @@MAPA  Enlace de Google Maps del lugar exacto (ej.: "https://maps.app.goo.gl/xxxx"). Vacío = busca la dirección
-  horario: { abre: "17:30", cierra: "12:30", texto: "5:30 PM – 12:30 AM" },   // @@HORARIO  Formato 24 horas. Si cierra después de medianoche, funciona igual
+  horario: { abre: "17:30", cierra: "00:30", texto: "5:30 PM – 12:30 AM" },   // @@HORARIO  Formato 24 horas. Si cierra después de medianoche, funciona igual
   delivery: true,                     // @@DELIVERY  true = aparece la opción "Delivery" y se pide la dirección
   redes: {                            // @@REDES  Pega el enlace de cada red. Las que estén vacías no se muestran
     instagram: "https://www.instagram.com/misterkratos12/",
@@ -997,14 +997,25 @@ function estaAbierto(){
   const a = minutosDe(NEGOCIO.horario.abre), c = minutosDe(NEGOCIO.horario.cierra);
   return a < c ? (m >= a && m < c) : (m >= a || m < c);   // si cierra después de medianoche
 }
-function horaBonita(hhmm){ const [h, m] = hhmm.split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; return `${(h % 12) || 12}:${String(m || 0).padStart(2, "0")} ${ap}`; }
+/* @@ESTADO — Abierto / Casi abrimos / Cerramos pronto / Cerrado */
 function pintarEstado(){
+  const AVISO_ANTES = 60;   // minutos antes de abrir para decir "Casi abrimos"
+  const AVISO_CIERRE = 30;  // minutos antes de cerrar para decir "Cerramos pronto"
+  const ahora = new Date(), m = ahora.getHours() * 60 + ahora.getMinutes();
+  const a = minutosDe(NEGOCIO.horario.abre), c = minutosDe(NEGOCIO.horario.cierra);
+  const faltaAbrir = (a - m + 1440) % 1440, faltaCerrar = (c - m + 1440) % 1440;
   const abierto = estaAbierto();
-  $("#estado").classList.toggle("cerrado", !abierto);
-  $("#estado span").textContent = abierto ? "Abierto ahora" : `Cerrado · Abrimos a las ${horaBonita(NEGOCIO.horario.abre)}`;
+  let texto, color;
+  if (abierto && faltaCerrar <= AVISO_CIERRE) { texto = `Cerramos pronto · a las ${horaBonita(NEGOCIO.horario.cierra)}`; color = "#F2994A"; }
+  else if (abierto) { texto = "Abierto ahora"; color = "#3DDC84"; }
+  else if (faltaAbrir <= AVISO_ANTES) { texto = `¡Casi abrimos! · en ${faltaAbrir} min`; color = "#F2C230"; }
+  else { texto = `Cerrado · Abrimos a las ${horaBonita(NEGOCIO.horario.abre)}`; color = "#8C867E"; }
+  const punto = $("#estado i");
+  punto.style.background = color;
+  punto.style.boxShadow = color === "#8C867E" ? "none" : `0 0 0 4px ${color}33`;
+  $("#estado span").textContent = texto;
   $("#horario").textContent = (NEGOCIO.delivery ? "Delivery y local: " : "Horario: ") + NEGOCIO.horario.texto;
 }
-
 /* ---------- Información, redes y pie ---------- */
 const ICONOS_REDES = {
   instagram:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
