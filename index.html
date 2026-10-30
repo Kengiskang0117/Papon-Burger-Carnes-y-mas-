@@ -12,6 +12,7 @@
   @@DIRECCION      Dirección (se cambia en un solo lugar)
   @@MAPA           Enlace exacto para el botón "Cómo llegar"
   @@HORARIO        Hora de abrir y cerrar (Abierto/Cerrado)
+  @@ESTADO         Mensajes "Casi abrimos" y "Cerramos pronto"
   @@DELIVERY       Encender o apagar la opción Delivery
   @@REDES          Instagram, Facebook, TikTok
   @@LLAMADAS       Mostrar u ocultar el botón de llamar
@@ -29,6 +30,7 @@
   @@TITULO         Nombre que sale en la pestaña del navegador
   @@NOMBRE-ARRIBA  Nombre grande del encabezado (PAPON BURGER)
   @@VISTA-PC       Cómo se ve en computadora
+  @@FOTO-RESPALDO  Logo transparente cuando no hay foto
 
   TEXTOS DE LA PÁGINA
   @@CARGA          Pantalla de carga ("Cargando menú")
@@ -286,12 +288,13 @@ img{display:block;max-width:100%}
 .pie .datos{color:#A8A29A;font-size:13px;line-height:1.6}
 .pie .firma{color:#6E6A63;font-size:12px}
 
+/* @@FOTO-RESPALDO — Logo transparente cuando no hay foto o mientras carga.
+   Para hacerlo más visible baja el .62 (ej.: .50); para más suave súbelo (ej.: .75).
+   Para volver a los dibujos, borra este bloque completo. */
+.arte svg{display:none}
+.arte{background:linear-gradient(rgba(22,9,9,.62),rgba(22,9,9,.62)), url("fotos/logo.png") center / 58% no-repeat, #160909}
+
 /* Aviso "Agregado" */
-  /* @@FOTO-RESPALDO — Logo transparente cuando no hay foto o mientras carga.
-      Para hacerlo más visible baja el .62 (ej.: .50); para más suave súbelo (ej.: .75).
-      Para volver a los dibujos, borra este bloque completo. */
-   .arte svg{display:none}
-   .arte{background:linear-gradient(rgba(22,9,9,.62),rgba(22,9,9,.62)), url("fotos/logo.png") center / 58% no-repeat, #160909}
 .aviso{position:fixed;left:50%;bottom:92px;z-index:60;transform:translate(-50%,20px);opacity:0;pointer-events:none;background:#F5F1E8;color:#111;font-weight:700;font-size:14px;padding:12px 18px;border-radius:999px;box-shadow:0 10px 30px rgba(0,0,0,.4);transition:all .25s;white-space:nowrap}
 .aviso.ver{opacity:1;transform:translate(-50%,0)}
 
@@ -467,11 +470,11 @@ const NEGOCIO = {
   whatsapp: "19785664534",           // @@WHATSAPP  Número para pedidos: 1 + código de área + número, todo junto
   telefono: "(978) 566-4534",         // @@TELEFONO  Cómo se ve el teléfono en la página
   direccion: "C. Principal, Santo Domingo Este",   // @@DIRECCION  Se cambia solo aquí: sale en la barra, la bienvenida, la tarjeta y el pie
-  mapa: "https://www.google.com/maps/place/Colmado+Fabio+1/@18.5381823,-69.8243417,17z/data=!3m1!4b1!4m6!3m5!1s0x8eaf8704d429857b:0xe52c8c5e5e8b14e1!8m2!3d18.5381823!4d-69.8217614!16s%2Fg%2F11fj1zkxvr?entry=ttu&g_ep=EgoyMDI2MTAyNy4wIKXMDSoASAFQAw%3D%3D",                           // @@MAPA  Enlace de Google Maps del lugar exacto (ej.: "https://maps.app.goo.gl/xxxx"). Vacío = busca la dirección
+  mapa: "",                           // @@MAPA  Enlace de Google Maps del lugar exacto (ej.: "https://maps.app.goo.gl/xxxx"). Vacío = busca la dirección
   horario: { abre: "17:30", cierra: "00:30", texto: "5:30 PM – 12:30 AM" },   // @@HORARIO  Formato 24 horas. Si cierra después de medianoche, funciona igual
   delivery: true,                     // @@DELIVERY  true = aparece la opción "Delivery" y se pide la dirección
   redes: {                            // @@REDES  Pega el enlace de cada red. Las que estén vacías no se muestran
-    instagram: "https://www.instagram.com/misterkratos12/",
+    instagram: "",
     facebook: "",
     tiktok: ""
   },
@@ -532,7 +535,7 @@ const MENU = [
     { id:"papas-rusticas", nombre:"Papas Rústicas", precio:195, desc:"Papas con cáscara, sazonadas con ajo y romero.", img:"https://images.unsplash.com/photo-1630431341973-02e1b662ec35?auto=format&fit=crop&w=800&q=75" },
     { id:"aros-cebolla", nombre:"Aros de Cebolla", precio:225, desc:"Aros de cebolla empanizados y crujientes.", img:"https://images.unsplash.com/photo-1639024471283-03518883512d?auto=format&fit=crop&w=800&q=75" },
     { id:"yuca-frita", nombre:"Yuca Frita", precio:195, desc:"Yuca frita dorada con salsa de ajo.", img:"https://images.unsplash.com/photo-1598679253544-2c97992403ea?auto=format&fit=crop&w=800&q=75" },
-    { id:"tostones", nombre:"Tostones", precio:175, desc:"Tostones crujientes con sal y salsa rosada.", img:"fotos/tostones-double-fried-plantains1.jpg" }
+    { id:"tostones", nombre:"Tostones", precio:175, desc:"Tostones crujientes con sal y salsa rosada.", img:"https://images.unsplash.com/photo-1540714605746-4f474eefc6d4?auto=format&fit=crop&w=800&q=75" }
   ]}]},
   /* ---------- @@BEBIDAS ---------- */
   { id:"bebidas", nombre:"Bebidas", tab:"Bebidas", arte:"bebida", chico:true, grupos:[
@@ -997,6 +1000,7 @@ function estaAbierto(){
   const a = minutosDe(NEGOCIO.horario.abre), c = minutosDe(NEGOCIO.horario.cierra);
   return a < c ? (m >= a && m < c) : (m >= a || m < c);   // si cierra después de medianoche
 }
+function horaBonita(hhmm){ const [h, m] = hhmm.split(":").map(Number); const ap = h >= 12 ? "PM" : "AM"; return `${(h % 12) || 12}:${String(m || 0).padStart(2, "0")} ${ap}`; }
 /* @@ESTADO — Abierto / Casi abrimos / Cerramos pronto / Cerrado */
 function pintarEstado(){
   const AVISO_ANTES = 60;   // minutos antes de abrir para decir "Casi abrimos"
@@ -1016,6 +1020,7 @@ function pintarEstado(){
   $("#estado span").textContent = texto;
   $("#horario").textContent = (NEGOCIO.delivery ? "Delivery y local: " : "Horario: ") + NEGOCIO.horario.texto;
 }
+
 /* ---------- Información, redes y pie ---------- */
 const ICONOS_REDES = {
   instagram:'<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>',
